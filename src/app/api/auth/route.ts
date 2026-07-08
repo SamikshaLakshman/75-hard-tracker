@@ -10,6 +10,11 @@ export async function POST(req: NextRequest) {
     const exists = await prisma.user.findUnique({ where: { email } });
     if (exists) return NextResponse.json({ error: "Email already registered" }, { status: 400 });
 
+    if (username) {
+      const usernameTaken = await prisma.user.findUnique({ where: { username } });
+      if (usernameTaken) return NextResponse.json({ error: "Username already taken" }, { status: 400 });
+}
+
     const hashed = await hashPassword(password);
     const user = await prisma.user.create({
       data: { email, password: hashed, username, displayName: username },
