@@ -25,9 +25,8 @@ export function getLevelTitle(level: number): string {
 }
 
 export const DAILY_TASKS = [
-  { key: "workout1", label: "Workout 1", icon: "fitness_center", subtitle: "45 Minutes", type: "boolean" },
-  { key: "workout2", label: "Workout 2", icon: "exercise", subtitle: "45 Minutes", type: "boolean" },
-  { key: "outdoorWorkout", label: "Outdoor Workout", icon: "forest", subtitle: "One workout must be outdoor", type: "boolean" },
+  { key: "workout1", label: "Workout 1 — Indoor", icon: "fitness_center", subtitle: "45 Minutes · Any exercise", type: "boolean" },
+  { key: "workout2", label: "Workout 2 — Outdoor", icon: "forest", subtitle: "45 Minutes · Must be outside", type: "boolean" },
   { key: "steps", label: "Steps", icon: "directions_walk", subtitle: "Daily step count", type: "number" },
   { key: "waterOz", label: "Water Intake", icon: "water_drop", subtitle: "Target: 128 oz (1 gallon)", type: "number" },
   { key: "proteinG", label: "Protein", icon: "egg_alt", subtitle: "Grams consumed", type: "number" },
