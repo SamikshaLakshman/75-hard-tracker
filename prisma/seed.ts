@@ -9,8 +9,14 @@ async function main() {
   // ─── Users ───
   const demo = await prisma.user.upsert({
     where: { email: "demo@75hard.app" },
-    update: { xp: 4850, level: 15, title: "Warrior" },
-    create: { email: "demo@75hard.app", password, username: "demo", displayName: "Alex Mercer", xp: 4850, level: 15, title: "Warrior" },
+    update: { xp: 4850, level: 15, title: "Operator" },
+    create: { email: "demo@75hard.app", password, username: "demo", displayName: "Alex Mercer", xp: 4850, level: 15, title: "Operator" },
+  });
+
+  const demotest = await prisma.user.upsert({
+    where: { email: "demotest@75hard.app" },
+    update: {},
+    create: { email: "demotest@75hard.app", password, username: "demotest", displayName: "Demo Test", xp: 1200, level: 8, title: "Soldier" },
   });
 
   const friend1 = await prisma.user.upsert({
@@ -31,7 +37,7 @@ async function main() {
     create: { email: "priya@75hard.app", password, username: "priyastrong", displayName: "Priya Sharma", xp: 9500, level: 30, title: "Veteran" },
   });
 
-  for (const user of [demo, friend1, friend2, friend3]) {
+  for (const user of [demo, demotest, friend1, friend2, friend3]) {
     await prisma.userSettings.upsert({ where: { userId: user.id }, update: {}, create: { userId: user.id } });
   }
 
@@ -66,7 +72,6 @@ async function main() {
     achievementRecords[a.key] = rec.id;
   }
 
-  // ─── Demo achievements ───
   const demoAchievements = ["first_day", "week_streak", "fortnight", "hydration_bronze", "hydration_silver", "reading_bronze", "workout_bronze", "workout_silver", "step_master", "early_bird"];
   for (const key of demoAchievements) {
     await prisma.userAchievement.upsert({
@@ -76,7 +81,6 @@ async function main() {
     });
   }
 
-  // ─── Friend achievements ───
   for (const key of ["first_day", "week_streak", "fortnight", "month_streak", "hydration_bronze", "hydration_silver", "hydration_gold", "reading_bronze", "reading_silver"]) {
     await prisma.userAchievement.upsert({
       where: { userId_achievementId: { userId: friend1.id, achievementId: achievementRecords[key] } },
@@ -85,8 +89,8 @@ async function main() {
     });
   }
 
-  // ─── Friendships ───
-  for (const friendId of [friend1.id, friend2.id, friend3.id]) {
+  // ─── Friendships — demotest + 3 others, all pre-added for demo account ───
+  for (const friendId of [demotest.id, friend1.id, friend2.id, friend3.id]) {
     await prisma.friendship.upsert({
       where: { userId_friendId: { userId: demo.id, friendId } },
       update: {},
@@ -108,7 +112,6 @@ async function main() {
     data: { userId: demo.id, startDate: challengeStart, status: "ACTIVE", currentDay: 30, maxStreak: 30 },
   });
 
-  // ─── 30 days of logs ───
   const waterTargets = [120,128,115,128,128,100,128,128,128,110,128,128,128,128,95,128,128,128,128,128,108,128,128,128,128,128,128,128,128,128];
   const weights =     [185,184.5,184,183.8,183.5,183.2,183,182.8,182.5,182.3,182,181.8,181.5,181.3,181,180.8,180.5,180.3,180,179.8,179.5,179.3,179,178.8,178.5,178.3,178,177.8,177.5,177.2];
   const sleeps =      [7.5,8,6.5,7,8,7.5,8,7,6,8,7.5,8,7,7.5,8,6.5,7,8,7.5,7,8,7.5,8,7,7.5,8,7,8,7.5,8];
@@ -123,7 +126,7 @@ async function main() {
     await prisma.dailyLog.create({
       data: {
         challengeId: activeChallenge.id, date, dayNumber: i + 1,
-        workout1: true, workout2: !incomplete, outdoorWorkout: true,
+        workout1: true, workout2: !incomplete, outdoorWorkout: !incomplete,
         steps: steps[i], waterOz: waterTargets[i], proteinG: incomplete ? 80 : 150,
         fiberG: incomplete ? 10 : 30, weightLbs: weights[i],
         readingDone: !incomplete, sleepHours: sleeps[i], mood: moods[i],
@@ -136,7 +139,7 @@ async function main() {
 
   console.log("✅ Seed complete!");
   console.log("👤 Demo: demo@75hard.app / password123");
-  console.log("👥 Friends: sarahfitness, mikegrind, priyastrong");
+  console.log("👥 Friends already added: demotest, sarahfitness, mikegrind, priyastrong");
   console.log("🏆 10 achievements unlocked for demo user");
 }
 

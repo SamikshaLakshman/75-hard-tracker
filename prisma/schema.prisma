@@ -8,18 +8,27 @@ datasource db {
 }
 
 model User {
-  id          String   @id @default(uuid())
-  email       String   @unique
-  password    String
-  username    String?  @unique
-  displayName String?
-  avatarUrl   String?
-  role        Role     @default(USER)
-  xp          Int      @default(0)
-  level       Int      @default(1)
-  title       String   @default("Recruit")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id             String   @id @default(uuid())
+  email          String   @unique
+  password       String
+  username       String?  @unique
+  displayName    String?
+  avatarUrl      String?
+  role           Role     @default(USER)
+  xp             Int      @default(0)
+  level          Int      @default(1)
+  title          String   @default("Recruit")
+
+  // Rewards
+  shields        Int       @default(0)
+  skipTokens     Int       @default(0)
+  doubleXpActive Boolean   @default(false)
+  activeTheme    String    @default("obsidian")
+  lastSpinAt     DateTime?
+  lastSpinPrize  String?
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   challenges   Challenge[]
   achievements UserAchievement[]

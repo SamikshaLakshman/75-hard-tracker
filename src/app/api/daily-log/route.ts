@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
+import { applyXP } from "@/lib/xp";
 
 export async function GET(req: NextRequest) {
   const session = await getSession();
@@ -33,12 +34,14 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const { challengeId, date, dayNumber, ...data } = body;
 
-  const booleanTasks = [data.workout1, data.workout2, data.outdoorWorkout, data.readingDone];
+  const booleanTasks = [data.workout1, data.workout2, data.readingDone];
   const numberTasks = [data.steps, data.waterOz, data.proteinG, data.fiberG, data.weightLbs, data.sleepHours];
   const isComplete = booleanTasks.every(Boolean) && numberTasks.every((v: number | null) => v !== null && v > 0);
 
   let xpEarned = 0;
-  Object.values(data).forEach((v) => { if (v === true || (typeof v === "number" && v > 0)) xpEarned += 10; });
+  Object.values(data).forEach((v) => {
+    if (v === true || (typeof v === "number" && v > 0)) xpEarned += 10;
+  });
   if (isComplete) xpEarned += 100;
 
   const log = await prisma.dailyLog.upsert({
@@ -48,14 +51,26 @@ export async function POST(req: NextRequest) {
   });
 
   if (isComplete) {
-    await prisma.user.update({
-      where: { id: session.userId },
-      data: { xp: { increment: xpEarned } },
-    });
-    await prisma.challenge.update({
-      where: { id: challengeId },
-      data: { currentDay: dayNumber, maxStreak: { increment: 0 } },
-    });
+    // Double XP reward from spin wheel — consume it here
+    const user = await prisma.user.findUnique({ where: { id: session.userId } });
+    let finalXP = xpEarned;
+    if (user?.doubleXpActive) {
+      finalXP *= 2;
+      await prisma.user.update({ where: { id: session.userId }, data: { doubleXpActive: false } });
+    }
+    await applyXP(session.userId, finalXP);
+
+    // Keep the challenge's streak counters accurate
+    const challenge = await prisma.challenge.findUnique({ where: { id: challengeId } });
+    if (challenge) {
+      await prisma.challenge.update({
+        where: { id: challengeId },
+        data: {
+          currentDay: dayNumber,
+          maxStreak: Math.max(challenge.maxStreak, dayNumber),
+        },
+      });
+    }
   }
 
   return NextResponse.json({ log });

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { xpForNextLevel } from "@/lib/utils";
+import { xpForNextLevel, THEMES } from "@/lib/utils";
 
 export default async function ProfilePage() {
   const session = await getSession();
@@ -20,10 +20,10 @@ export default async function ProfilePage() {
   const pastChallenges = user.challenges.filter((c) => c.status !== "ACTIVE");
   const nextLevelXP = xpForNextLevel(user.level);
   const xpProgress = Math.min((user.xp / nextLevelXP) * 100, 100);
+  const activeThemeInfo = THEMES.find((t) => t.id === user.activeTheme) || THEMES[0];
 
   return (
     <div className="space-y-6 md:space-y-8">
-      {/* Profile Header */}
       <section className="glass-card rounded-xl p-6 flex flex-col sm:flex-row items-center gap-6">
         <div className="w-20 h-20 rounded-full border-2 border-accent flex items-center justify-center text-accent text-3xl font-extrabold bg-accent/10">
           {(user.displayName || user.email)[0].toUpperCase()}
@@ -38,7 +38,6 @@ export default async function ProfilePage() {
         </div>
       </section>
 
-      {/* XP Bar */}
       <section className="glass-card rounded-xl p-5">
         <div className="flex justify-between mb-2">
           <span className="text-label-caps text-muted-foreground">EXPERIENCE POINTS</span>
@@ -49,7 +48,37 @@ export default async function ProfilePage() {
         </div>
       </section>
 
-      {/* Stats Grid */}
+      <section className="glass-card rounded-xl p-5">
+        <h3 className="text-label-caps text-muted-foreground mb-4">REWARDS WALLET</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="rounded-xl bg-info/10 border border-info/30 p-4 text-center">
+            <p className="text-2xl mb-1">🛡️</p>
+            <p className="text-2xl font-extrabold text-info">{user.shields}</p>
+            <p className="text-label-caps text-muted-foreground mt-1">SHIELDS</p>
+          </div>
+          <div className="rounded-xl bg-danger/10 border border-danger/30 p-4 text-center">
+            <p className="text-2xl mb-1">⏭️</p>
+            <p className="text-2xl font-extrabold text-danger">{user.skipTokens}</p>
+            <p className="text-label-caps text-muted-foreground mt-1">SKIP TOKENS</p>
+          </div>
+          <div className="rounded-xl bg-accent/10 border border-accent/30 p-4 text-center col-span-2 md:col-span-1">
+            <p className="text-2xl mb-1">🎨</p>
+            <p className="text-sm font-extrabold text-accent">{activeThemeInfo.name}</p>
+            <p className="text-label-caps text-muted-foreground mt-1">ACTIVE THEME</p>
+          </div>
+          <div className={`rounded-xl p-4 text-center ${user.doubleXpActive ? "bg-warning/10 border border-warning/30" : "bg-surface-container border border-border"}`}>
+            <p className="text-2xl mb-1">🔥</p>
+            <p className="text-sm font-extrabold" style={{ color: user.doubleXpActive ? "#FACC15" : undefined }}>
+              {user.doubleXpActive ? "ACTIVE" : "NONE"}
+            </p>
+            <p className="text-label-caps text-muted-foreground mt-1">DOUBLE XP</p>
+          </div>
+        </div>
+        <a href="/dashboard/rewards" className="block text-center text-accent text-stat-label mt-4 hover:underline">
+          Visit Rewards page to spin, unlock themes & more →
+        </a>
+      </section>
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
           { label: "TOTAL XP", value: user.xp.toLocaleString(), icon: "star" },
@@ -65,7 +94,6 @@ export default async function ProfilePage() {
         ))}
       </div>
 
-      {/* Achievements */}
       <section className="glass-card rounded-xl p-5">
         <h3 className="text-label-caps text-muted-foreground mb-4">ACHIEVEMENTS</h3>
         {user.achievements.length > 0 ? (
@@ -82,7 +110,6 @@ export default async function ProfilePage() {
         )}
       </section>
 
-      {/* Past Attempts */}
       {pastChallenges.length > 0 && (
         <section className="glass-card rounded-xl p-5">
           <h3 className="text-label-caps text-muted-foreground mb-4">PAST ATTEMPTS</h3>
