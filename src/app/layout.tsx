@@ -2,9 +2,12 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "75 Hard Tracker",
-  description: "Track your 75 Hard Challenge progress",
+  title: "Forge75",
+  description: "Forge75 - Track your 75 Hard Challenge progress",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/forge75-icon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
