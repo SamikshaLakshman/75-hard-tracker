@@ -1,0 +1,5 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" rx="20" fill="#000000"/>
+  <path d="M30 70 L45 30 L55 30 L70 70 M40 55 L60 55" stroke="#CCFF00" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="50" y="85" text-anchor="middle" font-family="Inter, sans-serif" font-weight="900" font-size="12" fill="#CCFF00">75 HARD</text>
+</svg>

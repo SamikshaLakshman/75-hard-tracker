@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>75 HARD | COMMAND CENTER</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#2f3223",
+                    "on-surface": "#e2e4cf",
+                    "on-background": "#e2e4cf",
+                    "on-tertiary-fixed": "#0b1d29",
+                    "surface-container-low": "#1a1d10",
+                    "on-primary-fixed": "#161e00",
+                    "on-error-container": "#ffdad6",
+                    "surface": "#111508",
+                    "surface-dim": "#111508",
+                    "error": "#ffb4ab",
+                    "inverse-surface": "#e2e4cf",
+                    "tertiary-fixed": "#d2e5f5",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "outline-variant": "#444933",
+                    "primary-container": "#c3f400",
+                    "surface-tint": "#abd600",
+                    "on-tertiary-container": "#556774",
+                    "surface-container-high": "#282b1d",
+                    "inverse-primary": "#506600",
+                    "on-primary-fixed-variant": "#3c4d00",
+                    "on-primary": "#283500",
+                    "tertiary": "#ffffff",
+                    "on-secondary": "#313030",
+                    "primary-fixed": "#c3f400",
+                    "on-primary-container": "#556d00",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#d2e5f5",
+                    "primary": "#ffffff",
+                    "surface-container-highest": "#333627",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#374956",
+                    "on-tertiary": "#21323e",
+                    "surface-bright": "#373b2c",
+                    "outline": "#8e9379",
+                    "primary-fixed-dim": "#abd600",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "background": "#111508",
+                    "surface-container-lowest": "#0c0f04",
+                    "tertiary-fixed-dim": "#b6c9d8",
+                    "secondary": "#c8c6c5",
+                    "surface-container": "#1e2113",
+                    "surface-variant": "#333627",
+                    "secondary-container": "#474746",
+                    "on-surface-variant": "#c4c9ac",
+                    "secondary-fixed": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-gap": "16px",
+                    "safe-area-bottom": "84px",
+                    "grid-gutter": "12px",
+                    "container-padding": "20px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-stat": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-stat": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e2e4cf;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .electric-glow {
+            box-shadow: 0 0 15px rgba(195, 244, 0, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2C2C2C;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-black text-on-surface">
+<!-- Navigation Drawer (Side Navigation) -->
+<aside class="h-full w-72 fixed left-0 top-0 bg-surface-container-low border-r border-white/10 z-50 flex flex-col gap-stack-gap">
+<!-- Header/Profile -->
+<div class="px-6 py-8 flex flex-col gap-2">
+<div class="text-primary-fixed font-display-stat text-2xl tracking-tighter italic">75 HARD</div>
+<div class="flex items-center gap-3 mt-6">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional high-contrast portrait of a determined athletic male commander in tactical fitness gear. The lighting is dramatic, high-key side lighting against a pitch black background, emphasizing grit and discipline. The aesthetic is ultra-modern and premium, matching an elite athletic performance brand with subtle lime green accents in the background environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXpI--Ai9Yxx3xdVxqd3C3moHzrDetf_JSuj8wuCx_2T58QjxHem_xnPfUnbqVYEtDOBBSn7d4y_voUuGxKXwd2v7ql6bLuVNe6dgNXPFFAqSEr7jRhMZnavoP-9D_MIIG13O7o7WMwWVYtIN0g4kUGdDgpcR7TPYzGUqNju5njUrTyQitRzK7jsdmg1MmURGYcWd-O_JVHgMcvLM_wM_BCheTqNOINYQam2Uvyzy0uS6b9pMiGA57t7AjLGUd6KhQXH87p8bZrYA"/>
+</div>
+<div>
+<p class="font-headline-md text-headline-md text-primary-fixed leading-tight">COMMANDER</p>
+<p class="font-label-caps text-label-caps text-on-surface-variant opacity-70">Level 42 Athlete</p>
+</div>
+</div>
+<div class="mt-2 inline-flex items-center gap-1 text-[10px] bg-primary-container/20 text-primary-fixed px-2 py-0.5 rounded-full font-bold">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                75 Day Streak
+            </div>
+</div>
+<!-- Nav Links -->
+<nav class="flex-1 px-4 space-y-1">
+<a class="bg-primary-container text-on-primary-container font-bold rounded-lg px-4 py-3 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined fill-icon">dashboard</span>
+<span class="font-body-lg text-body-lg">Dashboard</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high m-2 px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-body-lg text-body-lg">History</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high m-2 px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">monitoring</span>
+<span class="font-body-lg text-body-lg">Analytics</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high m-2 px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">diversity_3</span>
+<span class="font-body-lg text-body-lg">Community</span>
+</a>
+<a class="text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high m-2 px-4 py-3 rounded-lg flex items-center gap-3 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-lg text-body-lg">Settings</span>
+</a>
+</nav>
+<!-- Feature Flags Sidebar Section -->
+<div class="p-6 border-t border-white/10 mt-auto">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4 uppercase">System Flags</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-body-md font-medium text-on-surface">Friends</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-fixed"></div>
+</label>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md font-medium text-on-surface">AI Coach</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-fixed"></div>
+</label>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-body-md font-medium text-on-surface">Strava API</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-10 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary-fixed"></div>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-72 min-h-screen p-8 bg-black">
+<!-- Top App Bar Content (Integrated) -->
+<header class="flex justify-between items-center mb-10">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-white">System Overview</h1>
+<p class="text-on-surface-variant font-body-md">Real-time performance metrics for 75 Hard Global Ecosystem.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full glass-panel flex items-center justify-center hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white">notifications</span>
+</button>
+<div class="h-10 px-4 rounded-lg glass-panel flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary-fixed animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-primary-fixed">SYSTEM LIVE</span>
+</div>
+</div>
+</header>
+<!-- KPI Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+<!-- DAU Card -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Daily Active Users</p>
+<p class="font-display-stat text-display-stat text-4xl text-primary-fixed">124.8k</p>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-sm">trending_up</span>
+<span class="font-label-caps text-label-caps text-primary-fixed">+12.4%</span>
+<span class="text-[10px] text-on-surface-variant">vs yesterday</span>
+</div>
+</div>
+<!-- WAU Card -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Weekly Active Users</p>
+<p class="font-display-stat text-display-stat text-4xl text-white">842.1k</p>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-sm">trending_up</span>
+<span class="font-label-caps text-label-caps text-primary-fixed">+4.2%</span>
+<span class="text-[10px] text-on-surface-variant">vs last week</span>
+</div>
+</div>
+<!-- Completion Rate Card -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Completion Rate</p>
+<p class="font-display-stat text-display-stat text-4xl text-white">14.2<span class="text-2xl font-bold">%</span></p>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-sm">trending_down</span>
+<span class="font-label-caps text-label-caps text-error">-0.8%</span>
+<span class="text-[10px] text-on-surface-variant">Avg per cohort</span>
+</div>
+</div>
+<!-- Retention Card -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-1">Day 30 Retention</p>
+<p class="font-display-stat text-display-stat text-4xl text-white">32.5<span class="text-2xl font-bold">%</span></p>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed text-sm">trending_up</span>
+<span class="font-label-caps text-label-caps text-primary-fixed">+2.1%</span>
+<span class="text-[10px] text-on-surface-variant">Steady growth</span>
+</div>
+</div>
+</section>
+<!-- Main Analytics Area -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Failure Reasons Chart -->
+<div class="lg:col-span-1 glass-panel p-6 rounded-xl relative overflow-hidden">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-md text-headline-md text-white">Failure Reasons</h2>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">more_horiz</span>
+</div>
+<div class="space-y-6">
+<div class="space-y-2">
+<div class="flex justify-between text-label-caps font-label-caps text-on-surface-variant">
+<span>MISSED 2ND WORKOUT</span>
+<span class="text-white">42%</span>
+</div>
+<div class="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed electric-glow" style="width: 42%;"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-label-caps font-label-caps text-on-surface-variant">
+<span>DIET DEVIATION</span>
+<span class="text-white">28%</span>
+</div>
+<div class="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed/80" style="width: 28%;"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-label-caps font-label-caps text-on-surface-variant">
+<span>FORGOT PHOTO</span>
+<span class="text-white">18%</span>
+</div>
+<div class="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed/60" style="width: 18%;"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-label-caps font-label-caps text-on-surface-variant">
+<span>WATER INTAKE</span>
+<span class="text-white">12%</span>
+</div>
+<div class="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed/40" style="width: 12%;"></div>
+</div>
+</div>
+</div>
+<!-- Subtle background visualization decoration -->
+<div class="absolute -bottom-10 -right-10 opacity-10">
+<span class="material-symbols-outlined text-[160px]">error_outline</span>
+</div>
+</div>
+<!-- User Weight Trends Area -->
+<div class="lg:col-span-2 glass-panel p-6 rounded-xl flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-white">User Weight Trends</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant">AVERAGE LOSS PER COHORT (LBS)</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded bg-white/5 text-label-caps font-label-caps text-white border border-white/10">30D</button>
+<button class="px-3 py-1 rounded bg-primary-fixed text-label-caps font-label-caps text-on-primary-fixed border border-primary-fixed">90D</button>
+</div>
+</div>
+<div class="flex-1 w-full flex items-end justify-between gap-2 min-h-[280px] pb-4">
+<!-- Fake Chart Bars -->
+<div class="flex-1 flex flex-col justify-end items-center group">
+<div class="w-full bg-white/5 rounded-t-lg transition-all group-hover:bg-primary-fixed/20 relative" style="height: 40%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-label-caps font-label-caps text-primary-fixed">12.4</div>
+</div>
+<span class="mt-4 text-[10px] text-on-surface-variant font-label-caps">OCT</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group">
+<div class="w-full bg-white/5 rounded-t-lg transition-all group-hover:bg-primary-fixed/20 relative" style="height: 55%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-label-caps font-label-caps text-primary-fixed">14.1</div>
+</div>
+<span class="mt-4 text-[10px] text-on-surface-variant font-label-caps">NOV</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group">
+<div class="w-full bg-white/5 rounded-t-lg transition-all group-hover:bg-primary-fixed/20 relative" style="height: 45%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-label-caps font-label-caps text-primary-fixed">12.9</div>
+</div>
+<span class="mt-4 text-[10px] text-on-surface-variant font-label-caps">DEC</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group">
+<div class="w-full bg-white/5 rounded-t-lg transition-all group-hover:bg-primary-fixed/20 relative" style="height: 75%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-label-caps font-label-caps text-primary-fixed">18.2</div>
+</div>
+<span class="mt-4 text-[10px] text-on-surface-variant font-label-caps">JAN</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group">
+<div class="w-full bg-primary-fixed rounded-t-lg relative electric-glow" style="height: 85%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 text-label-caps font-label-caps text-primary-fixed">20.4</div>
+</div>
+<span class="mt-4 text-[10px] text-primary-fixed font-label-caps">FEB</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group">
+<div class="w-full bg-white/5 rounded-t-lg transition-all group-hover:bg-primary-fixed/20 relative" style="height: 60%;">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity text-label-caps font-label-caps text-primary-fixed">15.5</div>
+</div>
+<span class="mt-4 text-[10px] text-on-surface-variant font-label-caps">MAR</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Section: Recent Activity & Live Ticker -->
+<section class="grid grid-cols-1 lg:grid-cols-4 gap-6 mt-8">
+<div class="lg:col-span-3 glass-panel p-6 rounded-xl">
+<h2 class="font-headline-md text-headline-md text-white mb-6">Recent Completion Events</h2>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/5 hover:border-primary-fixed/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container fill-icon">military_tech</span>
+</div>
+<div>
+<p class="text-body-md font-bold text-white">User @IRON_MIKE completed Day 75</p>
+<p class="text-label-caps text-[10px] text-on-surface-variant uppercase">3 Minutes ago • Los Angeles, US</p>
+</div>
+</div>
+<button class="text-primary-fixed font-label-caps text-label-caps">VERIFY</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/5">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded bg-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">person_add</span>
+</div>
+<div>
+<p class="text-body-md font-bold text-white">New Athlete Joined Cohort #942</p>
+<p class="text-label-caps text-[10px] text-on-surface-variant uppercase">8 Minutes ago • Berlin, DE</p>
+</div>
+</div>
+<button class="text-on-surface-variant font-label-caps text-label-caps">VIEW</button>
+</div>
+</div>
+</div>
+<!-- Heatmap-like Status Grid -->
+<div class="lg:col-span-1 glass-panel p-6 rounded-xl">
+<h2 class="font-headline-md text-headline-md text-white mb-4">Node Status</h2>
+<div class="grid grid-cols-5 gap-2">
+<!-- Generating a grid of status squares -->
+<div class="aspect-square bg-primary-fixed rounded-sm shadow-[0_0_5px_#abd600]"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed-dim rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-[#334400] rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed-dim rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-[#334400] rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm"></div>
+</div>
+<div class="mt-4 flex justify-between items-center text-label-caps font-label-caps text-on-surface-variant">
+<span>98.2% Uptime</span>
+<span class="text-primary-fixed">ALL GOOD</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Global Background Shader Effect -->
+<div class="fixed inset-0 pointer-events-none z-[-1] opacity-20">
+
+</div>
+<script>
+        // Micro-interactions for toggle switches
+        const toggles = document.querySelectorAll('input[type="checkbox"]');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('change', (e) => {
+                const parent = e.target.closest('div.flex');
+                const label = parent.querySelector('span');
+                if(e.target.checked) {
+                    label.classList.add('text-primary-fixed');
+                } else {
+                    label.classList.remove('text-primary-fixed');
+                }
+            });
+        });
+
+        // Hover animation for glass panels
+        const panels = document.querySelectorAll('.glass-panel');
+        panels.forEach(panel => {
+            panel.addEventListener('mouseenter', () => {
+                panel.style.transform = 'translateY(-2px)';
+                panel.style.transition = 'transform 0.2s ease-out';
+                panel.style.boxShadow = '0 10px 30px -10px rgba(0,0,0,0.5)';
+            });
+            panel.addEventListener('mouseleave', () => {
+                panel.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

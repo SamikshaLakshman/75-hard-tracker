@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>75 HARD | Progress &amp; Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#474747",
+                    "surface-container": "#1e2020",
+                    "on-primary-fixed": "#161e00",
+                    "primary-fixed-dim": "#abd600",
+                    "surface-container-highest": "#333535",
+                    "on-error": "#690005",
+                    "surface-container-high": "#282a2b",
+                    "outline": "#8e9379",
+                    "on-primary-fixed-variant": "#3c4d00",
+                    "error": "#ffb4ab",
+                    "on-primary": "#283500",
+                    "surface-container-lowest": "#0c0f0f",
+                    "primary-fixed": "#c3f400",
+                    "on-tertiary": "#313030",
+                    "surface-tint": "#abd600",
+                    "on-secondary-container": "#b5b5b5",
+                    "on-background": "#e2e2e2",
+                    "inverse-on-surface": "#2f3131",
+                    "on-tertiary-container": "#656464",
+                    "error-container": "#93000a",
+                    "surface": "#121414",
+                    "on-secondary": "#303030",
+                    "tertiary": "#ffffff",
+                    "surface-bright": "#37393a",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "on-tertiary-fixed-variant": "#474646",
+                    "on-primary-container": "#556d00",
+                    "secondary-fixed-dim": "#c6c6c6",
+                    "tertiary-fixed": "#e5e2e1",
+                    "inverse-primary": "#506600",
+                    "secondary-fixed": "#e2e2e2",
+                    "secondary": "#c6c6c6",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "surface-variant": "#333535",
+                    "surface-container-low": "#1a1c1c",
+                    "primary": "#ffffff",
+                    "primary-container": "#c3f400",
+                    "inverse-surface": "#e2e2e2",
+                    "surface-dim": "#121414",
+                    "outline-variant": "#444933",
+                    "on-error-container": "#ffdad6",
+                    "background": "#121414",
+                    "on-secondary-fixed-variant": "#474747",
+                    "on-surface": "#e2e2e2",
+                    "on-surface-variant": "#c4c9ac",
+                    "tertiary-container": "#e5e2e1",
+                    "tertiary-fixed-dim": "#c8c6c5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target": "48px",
+                    "section-margin": "2rem",
+                    "container-padding": "1rem",
+                    "gutter": "1rem",
+                    "card-gap": "0.75rem"
+            },
+            "fontFamily": {
+                    "stat-label": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-stat": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "stat-label": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-stat": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e2e2e2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid #222222;
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(195, 244, 0, 0.15);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-grid {
+            background-image: linear-gradient(#222 1px, transparent 1px), linear-gradient(90deg, #222 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md pb-24">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant flex justify-between items-center px-container-padding h-touch-target">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed">bolt</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tighter text-primary-fixed">75 HARD</h1>
+</div>
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<main class="pt-20 px-container-padding max-w-[600px] mx-auto flex flex-col gap-card-gap">
+<!-- Completion Probability Header -->
+<section class="glass-card rounded-xl p-6 flex items-center justify-between overflow-hidden relative active-glow border-primary-fixed/30">
+<div class="z-10">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">CHANCE OF SUCCESS</p>
+<div class="flex items-baseline gap-1">
+<span class="font-display-stat text-display-stat text-primary-fixed">88</span>
+<span class="font-headline-md text-headline-md text-primary-fixed/60">%</span>
+</div>
+<p class="font-stat-label text-stat-label text-on-primary-container mt-2">Elite Discipline Detected</p>
+</div>
+<div class="relative w-24 h-24 z-10">
+<svg class="w-full h-full transform -rotate-90">
+<circle cx="48" cy="48" fill="transparent" r="40" stroke="#222" stroke-width="8"></circle>
+<circle cx="48" cy="48" fill="transparent" r="40" stroke="#c3f400" stroke-dasharray="251.2" stroke-dashoffset="30" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+</div>
+<!-- Atmospheric background element -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-primary-fixed/5 blur-3xl rounded-full"></div>
+</section>
+<!-- Weight Trend Line Chart -->
+<section class="glass-card rounded-xl p-6">
+<div class="flex justify-between items-end mb-6">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">WEIGHT TREND</p>
+<h2 class="font-headline-md text-headline-md">184.2 <span class="text-on-surface-variant text-body-md font-normal">lbs</span></h2>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-primary-fixed font-stat-label text-stat-label flex items-center">
+<span class="material-symbols-outlined text-sm mr-1">arrow_downward</span> -12.4 lbs
+                    </span>
+<p class="text-on-surface-variant text-[10px] font-label-caps">LAST 30 DAYS</p>
+</div>
+</div>
+<div class="h-48 w-full relative chart-grid rounded border border-outline-variant/30 overflow-hidden">
+<svg class="w-full h-full" viewbox="0 0 400 150">
+<!-- Path for the trend line -->
+<path d="M 0 120 Q 50 110, 100 90 T 200 70 T 300 55 T 400 40" fill="none" stroke="#c3f400" stroke-linecap="round" stroke-width="3"></path>
+<!-- Area under path -->
+<path d="M 0 120 Q 50 110, 100 90 T 200 70 T 300 55 T 400 40 L 400 150 L 0 150 Z" fill="url(#gradient)" opacity="0.1"></path>
+<defs>
+<lineargradient id="gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#c3f400;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#c3f400;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<!-- Points -->
+<circle cx="0" cy="120" fill="#c3f400" r="4"></circle>
+<circle cx="200" cy="70" fill="#c3f400" r="4"></circle>
+<circle cx="400" cy="40" fill="#c3f400" r="4"></circle>
+</svg>
+</div>
+<div class="flex justify-between mt-2 font-label-caps text-[10px] text-on-surface-variant px-1">
+<span>DAY 1</span>
+<span>DAY 15</span>
+<span>DAY 30 (NOW)</span>
+</div>
+</section>
+<!-- Secondary Charts Row (Water & Sleep) -->
+<div class="grid grid-cols-2 gap-card-gap">
+<!-- Water Intake Bar Chart -->
+<section class="glass-card rounded-xl p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary-fixed-dim text-lg">water_drop</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">WATER CONSISTENCY</p>
+</div>
+<div class="flex items-end justify-between h-20 gap-1 px-1">
+<div class="w-full bg-primary-fixed h-[90%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[100%] rounded-t-sm"></div>
+<div class="w-full bg-surface-container-highest h-[40%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[95%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[100%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[85%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[100%] rounded-t-sm"></div>
+</div>
+<div class="flex justify-between mt-2 font-label-caps text-[8px] text-on-surface-variant">
+<span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+</div>
+</section>
+<!-- Sleep Consistency Bar Chart -->
+<section class="glass-card rounded-xl p-4 flex flex-col">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary-fixed-dim text-lg">bedtime</span>
+<p class="font-label-caps text-[10px] text-on-surface-variant">SLEEP PERFORMANCE</p>
+</div>
+<div class="flex items-end justify-between h-20 gap-1 px-1">
+<div class="w-full bg-secondary h-[70%] rounded-t-sm"></div>
+<div class="w-full bg-secondary h-[80%] rounded-t-sm"></div>
+<div class="w-full bg-secondary h-[75%] rounded-t-sm"></div>
+<div class="w-full bg-secondary h-[60%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[100%] rounded-t-sm"></div>
+<div class="w-full bg-secondary h-[85%] rounded-t-sm"></div>
+<div class="w-full bg-secondary h-[80%] rounded-t-sm"></div>
+</div>
+<div class="flex justify-between mt-2 font-label-caps text-[8px] text-on-surface-variant">
+<span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+</div>
+</section>
+</div>
+<!-- Weekly Summary Bento -->
+<section class="glass-card rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<p class="font-label-caps text-label-caps text-on-surface-variant">WEEKLY SUMMARY</p>
+<div class="px-2 py-1 bg-surface-container rounded-full text-[10px] font-bold text-primary-fixed">WEEK 4</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<span class="font-body-md text-on-surface-variant">Tasks Completed</span>
+<span class="font-headline-md text-headline-md">94%</span>
+<div class="w-full h-1 bg-surface-container rounded-full mt-1">
+<div class="h-full bg-primary-fixed rounded-full" style="width: 94%"></div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-body-md text-on-surface-variant">Avg. Workout</span>
+<span class="font-headline-md text-headline-md">52<span class="text-body-md text-on-surface-variant ml-1">min</span></span>
+<p class="text-[10px] text-primary-fixed font-bold">+4% vs last week</p>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A cinematic, high-contrast close-up portrait of a focused athlete in a dark gym setting. Intense lighting highlights facial features and sweat, following a dark-mode minimalist aesthetic with deep blacks and sharp highlights. The style is hyper-realistic and high-performance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgSLDOXXxtSKzRtRGVy39jjDdHK30Y5LYqlhkNHiHPpGv-y40aO3-QfzPC9yGpUPDo98HN5BdfXPib20tvEEUgnEoOF36pMiGOBKtuMYqoyWHq2Wi-J9A6quUyoaIFCsLG5pcpvqpc_uuRJjjKab-fjZpey9-l_48yneXu6irNXTwe98M7NlkomVFWaeEFnoOqaIfNuhxv89Z06Q1T5u-QWH5S4KFR1zS3_zzBfxmCNVbRpbBmOV_jwG4OWDaVHovRHt-6uSk7ubU"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a determined woman with athletic features, shot in a dark, moody studio. The color palette is strictly deep charcoals and blacks with an electric lime glow reflecting on her skin. Professional high-key lighting creates a sense of grit and discipline. Minimalist and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv4xE0lmdOZT2XgSs933GhTyqBKvqv_MIveI1vPJM8Zt6D7qMctzyFkv1fSAwro9e3M2iUy1Qf_hqkQ0x94qiyPw2_RBo4UNHeYfzhgHPsmLJ5zjpAyrtXVXhQaJTheTxc7wObbe9KID7B-ZIVI054KR0nGsgIqx6FyE2TO13IgvVRX6tFF0ljnIY9jUxGIk6qLg073R6Jbkx2oef0pfBouo9WR3m15w3u3JVa3cHBN7fL-aMv_UWRrA9flfIp6C6oLBirq77JbOg"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface bg-surface-container flex items-center justify-center overflow-hidden">
+<div class="text-[10px] font-bold text-on-surface-variant">+12</div>
+</div>
+</div>
+<p class="font-stat-label text-stat-label text-on-surface-variant">Community standing: <span class="text-primary-fixed font-bold">Top 5%</span></p>
+</div>
+</section>
+<!-- Insights Quote / Motivation -->
+<section class="glass-card rounded-xl p-6 bg-gradient-to-br from-surface to-surface-container-low border-l-4 border-l-primary-fixed">
+<span class="material-symbols-outlined text-primary-fixed mb-2">format_quote</span>
+<p class="italic text-body-lg font-body-lg text-primary leading-tight">"Discipline is doing what needs to be done, even if you don't want to do it."</p>
+<p class="mt-4 font-label-caps text-[10px] text-on-surface-variant tracking-widest">— SYSTEM ADVISORY</p>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-t border-outline-variant">
+<div class="flex justify-around items-center h-20 px-container-padding max-w-[600px] mx-auto">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-caps text-label-caps">Calendar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-fixed font-bold active:scale-110 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">donut_large</span>
+<span class="font-label-caps text-label-caps">Progress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Friends</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Pulsing active day logic simulated with JS
+        function createPulseEffect() {
+            const circle = document.querySelector('circle[stroke="#c3f400"]');
+            if(circle) {
+                let opacity = 1;
+                let goingDown = true;
+                setInterval(() => {
+                    if(goingDown) opacity -= 0.01;
+                    else opacity += 0.01;
+                    if(opacity <= 0.6) goingDown = false;
+                    if(opacity >= 1) goingDown = true;
+                    circle.style.opacity = opacity;
+                }, 50);
+            }
+        }
+        createPulseEffect();
+    </script>
+</body></html>

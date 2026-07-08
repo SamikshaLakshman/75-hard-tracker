@@ -1,0 +1,152 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  email       String   @unique
+  password    String
+  username    String?  @unique
+  displayName String?
+  avatarUrl   String?
+  role        Role     @default(USER)
+  xp          Int      @default(0)
+  level       Int      @default(1)
+  title       String   @default("Recruit")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  challenges   Challenge[]
+  achievements UserAchievement[]
+  friendships  Friendship[]      @relation("UserFriends")
+  friendOf     Friendship[]      @relation("FriendOf")
+  settings     UserSettings?
+}
+
+model UserSettings {
+  id                   String  @id @default(uuid())
+  userId               String  @unique
+  theme                Theme   @default(SYSTEM)
+  emailReminders       Boolean @default(true)
+  weeklyReports        Boolean @default(true)
+  notificationsEnabled Boolean @default(true)
+  user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Challenge {
+  id        String          @id @default(uuid())
+  userId    String
+  startDate DateTime
+  endDate   DateTime?
+  status    ChallengeStatus @default(ACTIVE)
+  currentDay Int            @default(0)
+  maxStreak  Int            @default(0)
+  createdAt  DateTime       @default(now())
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dailyLogs DailyLog[]
+
+  @@index([userId, status])
+}
+
+model DailyLog {
+  id             String   @id @default(uuid())
+  challengeId    String
+  date           DateTime @db.Date
+  dayNumber      Int
+
+  workout1       Boolean  @default(false)
+  workout2       Boolean  @default(false)
+  outdoorWorkout Boolean  @default(false)
+  steps          Int?
+  waterOz        Float?
+  proteinG       Float?
+  fiberG         Float?
+  weightLbs      Float?
+  readingDone    Boolean  @default(false)
+  sleepHours     Float?
+  mood           Int?
+  notes          String?  @db.Text
+
+  isComplete     Boolean  @default(false)
+  completedAt    DateTime?
+  xpEarned       Int      @default(0)
+
+  challenge      Challenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+
+  @@unique([challengeId, date])
+  @@index([date])
+}
+
+model Achievement {
+  id          String @id @default(uuid())
+  key         String @unique
+  name        String
+  description String
+  icon        String @default("emoji_events")
+  xpReward    Int    @default(0)
+  category    String
+  threshold   Int    @default(1)
+
+  users UserAchievement[]
+}
+
+model UserAchievement {
+  id            String   @id @default(uuid())
+  userId        String
+  achievementId String
+  unlockedAt    DateTime @default(now())
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  achievement Achievement @relation(fields: [achievementId], references: [id])
+
+  @@unique([userId, achievementId])
+}
+
+model Friendship {
+  id        String           @id @default(uuid())
+  userId    String
+  friendId  String
+  status    FriendshipStatus @default(PENDING)
+  createdAt DateTime         @default(now())
+
+  user   User @relation("UserFriends", fields: [userId], references: [id], onDelete: Cascade)
+  friend User @relation("FriendOf", fields: [friendId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, friendId])
+}
+
+model FeatureFlag {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  enabled   Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Theme {
+  LIGHT
+  DARK
+  SYSTEM
+}
+
+enum ChallengeStatus {
+  ACTIVE
+  COMPLETED
+  FAILED
+}
+
+enum FriendshipStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+}

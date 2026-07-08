@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>75 HARD | Friends &amp; Leaderboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#2f3223",
+                    "on-surface": "#e2e4cf",
+                    "on-background": "#e2e4cf",
+                    "on-tertiary-fixed": "#0b1d29",
+                    "surface-container-low": "#1a1d10",
+                    "on-primary-fixed": "#161e00",
+                    "on-error-container": "#ffdad6",
+                    "surface": "#111508",
+                    "surface-dim": "#111508",
+                    "error": "#ffb4ab",
+                    "inverse-surface": "#e2e4cf",
+                    "tertiary-fixed": "#d2e5f5",
+                    "secondary-fixed-dim": "#c8c6c5",
+                    "outline-variant": "#444933",
+                    "primary-container": "#c3f400",
+                    "surface-tint": "#abd600",
+                    "on-tertiary-container": "#556774",
+                    "surface-container-high": "#282b1d",
+                    "inverse-primary": "#506600",
+                    "on-primary-fixed-variant": "#3c4d00",
+                    "on-primary": "#283500",
+                    "tertiary": "#ffffff",
+                    "on-secondary": "#313030",
+                    "primary-fixed": "#c3f400",
+                    "on-primary-container": "#556d00",
+                    "error-container": "#93000a",
+                    "tertiary-container": "#d2e5f5",
+                    "primary": "#ffffff",
+                    "surface-container-highest": "#333627",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#374956",
+                    "on-tertiary": "#21323e",
+                    "surface-bright": "#373b2c",
+                    "outline": "#8e9379",
+                    "primary-fixed-dim": "#abd600",
+                    "on-secondary-fixed-variant": "#474746",
+                    "on-secondary-container": "#b7b5b4",
+                    "on-secondary-fixed": "#1c1b1b",
+                    "background": "#111508",
+                    "surface-container-lowest": "#0c0f04",
+                    "tertiary-fixed-dim": "#b6c9d8",
+                    "secondary": "#c8c6c5",
+                    "surface-container": "#1e2113",
+                    "surface-variant": "#333627",
+                    "secondary-container": "#474746",
+                    "on-surface-variant": "#c4c9ac",
+                    "secondary-fixed": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-gap": "16px",
+                    "safe-area-bottom": "84px",
+                    "grid-gutter": "12px",
+                    "container-padding": "20px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-stat": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-stat": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e2e4cf;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .lime-glow {
+            box-shadow: 0 0 15px rgba(195, 244, 0, 0.2);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface-container-lowest min-h-screen pb-safe-area-bottom">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-container-padding py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="fitness_center">fitness_center</span>
+<h1 class="font-display-stat text-headline-lg-mobile md:text-headline-lg text-primary-fixed tracking-tighter italic uppercase">75 HARD</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a determined athlete with sharp lighting, high contrast, and deep shadows. The aesthetic is gritty yet polished, reflecting a high-performance fitness culture. The background is pitch black, emphasizing the athlete's intense expression and the vibrant Electric Lime accent lighting on their profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXL9CDybFVrGgJ1A_nJVULAm5cI1i9typixJhRX98M_XQGVxM3OigSdEVlACTO1OKT1cZHiv9qR2cyoh60oAJjvVscwOEOq1fuHHHaG0dbTx5Jhmr5kEibHndXjhl4zEW8xS6ABi78gbXtYfxN55PhptgBH31yJ9ULYyh6WfYTh_rMLaaGfs_2LUdFOzR_JkyazWTGOOU8JPN3bmsnBYAc1iqwws_OcaSi-4pwFBLhg1V4ErHzlZiZsh0NwUxOJiVqee0yNebWCVw"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-container-padding max-w-2xl mx-auto flex flex-col gap-stack-gap">
+<!-- Search Section -->
+<section class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+</div>
+<input class="w-full bg-surface-container-low border-white/10 rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-on-surface-variant focus:ring-2 focus:ring-primary-fixed focus:border-transparent transition-all" placeholder="Find athletes..." type="text"/>
+</section>
+<!-- Stats Overview (Asymmetric Layout) -->
+<section class="grid grid-cols-2 gap-4">
+<div class="glass-panel p-5 rounded-2xl flex flex-col justify-between lime-glow">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Global Rank</span>
+<div class="flex items-baseline gap-1 mt-2">
+<span class="font-display-stat text-4xl text-primary-fixed">#128</span>
+<span class="text-xs text-on-surface-variant">/ 42.5k</span>
+</div>
+</div>
+<div class="glass-panel p-5 rounded-2xl flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Community Streak</span>
+<div class="flex items-center gap-2 mt-2">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-display-stat text-4xl text-on-surface">14</span>
+<span class="text-xs text-on-surface-variant">Days</span>
+</div>
+</div>
+</section>
+<!-- Friends List / Leaderboard -->
+<section class="flex flex-col gap-4 mb-4">
+<div class="flex justify-between items-center px-1">
+<h2 class="font-headline-md text-headline-md text-on-surface">Weekly Leaders</h2>
+<button class="font-label-caps text-label-caps text-primary-fixed hover:underline transition-all">VIEW ALL</button>
+</div>
+<!-- Friend Card 1 (Top Athlete) -->
+<div class="glass-panel p-4 rounded-2xl flex items-center gap-4 transition-transform active:scale-[0.98]">
+<div class="relative">
+<div class="w-14 h-14 rounded-xl overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="Close up of a muscular athlete's face with sweat glistening under dramatic neon lime lighting. The composition is tight and intense, emphasizing raw discipline and physical accomplishment against a pitch black background. The style is cinematic and high-contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrWz-bMdEznlid9q8w2LNI6gE8ARNyPimRDSf4i62pxNvAy2K4dlj1cbC9IX1bK4R_UbMgiyEtNxVSNQGPOCLfjeg5fkRfRjNNUYNyNpKMUhO6ae9SxvFYJNFiAsq9bxl-Az3CCPYH0iLFMK-kIyABxjSmltjlsBS4AEfvPj-xzpxLwhhGAZS3bthpWI99jnH9-JGq8kRMgUQI0tDCCPoCDiuq5DggkEteQaucDGrgalj5EUfBLrX6p3WKUnljm1YL15L0HoSn94U"/>
+</div>
+<div class="absolute -top-2 -right-2 bg-primary-fixed text-on-primary-fixed w-6 h-6 rounded-full flex items-center justify-center font-bold text-[10px]">1</div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-on-surface truncate uppercase">Marcus V.</h3>
+<div class="flex items-center gap-1 text-primary-fixed">
+<span class="material-symbols-outlined text-sm" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-display-stat text-lg leading-none">72</span>
+</div>
+</div>
+<div class="mt-2 w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary-fixed h-full lime-glow" style="width: 98%;"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="font-label-caps text-[10px] text-on-surface-variant">98% COMPLETE</span>
+<span class="font-label-caps text-[10px] text-primary-fixed">ELITE</span>
+</div>
+</div>
+</div>
+<!-- Friend Card 2 -->
+<div class="glass-panel p-4 rounded-2xl flex items-center gap-4 transition-transform active:scale-[0.98]">
+<div class="w-14 h-14 rounded-xl overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A focused female sprinter at the starting blocks, captured in a moody dark-mode aesthetic with sharp highlights from a singular lime green light source. The image conveys extreme speed and performance, with a shallow depth of field focusing on her determined eyes. Pitch black environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAApBOt8KwMJn2Tpwno1uoqMlL3r0QIc2xjJ-4ivmUPEal4M2UuFEwljcm747q04dpoZA9qRcOt8FEwlCmIqkAqEl5BDT_cRHOX8ulDCB3eBuo1SZJVOaMf98R9jbr03qfAzbpm0SvREzt5y97oqsP9Vv0U-DqsLHsclsrTfceZlCciuVHmBwYQZPNztwMw7-LW2-8yEQ2j3AzC8EaRnw3oBoF_57DsTbAl52XywDPhf50JUcfKkw6vHmHg67snbhjuOD3EOWhZbCU"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-on-surface truncate uppercase">Sarah Chen</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-display-stat text-lg leading-none">41</span>
+</div>
+</div>
+<div class="mt-2 w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary-fixed h-full" style="width: 82%;"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="font-label-caps text-[10px] text-on-surface-variant">82% COMPLETE</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">WARRIOR</span>
+</div>
+</div>
+</div>
+<!-- Friend Card 3 -->
+<div class="glass-panel p-4 rounded-2xl flex items-center gap-4 transition-transform active:scale-[0.98]">
+<div class="w-14 h-14 rounded-xl overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="An overhead shot of a heavy weightlifter gripping a barbell, chalk dust floating in the air. The lighting is high-contrast black and white with a subtle electric lime glow emanating from the barbell plates. The scene is visceral and intense, representing peak physical exertion in a minimalist dark gym." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi5CU5i9LoqUEswt-z4L8VMb5w0yVx0x_UEhW9984rlcaHTWx7l6MvouU1JB5qFuVT4pQAv_Q-Nh6F41f2YLXyFHT8Sx-HnQ5LLhWqpMXp0MvpPpb1EZSEBH-0EzFn7rnrZSbFuGIBLVb_0xBZOhkY6M_Oc3JeP-uP9eDaULY6lu8LkWkow4zXm1SP3-thwY3z7l75hN1bu69YZ3dZOq3ePcfaDXrOkRIONZ70ZYYB_3-0Yng6Xxo898qMlp77vjII2cwe-NXR9_M"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-on-surface truncate uppercase">Jack 'Iron'</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-display-stat text-lg leading-none">12</span>
+</div>
+</div>
+<div class="mt-2 w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary-fixed h-full" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="font-label-caps text-[10px] text-on-surface-variant">65% COMPLETE</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">RECRUIT</span>
+</div>
+</div>
+</div>
+<!-- Friend Card 4 -->
+<div class="glass-panel p-4 rounded-2xl flex items-center gap-4 opacity-75">
+<div class="w-14 h-14 rounded-xl overflow-hidden border border-white/10">
+<img class="w-full h-full object-cover" data-alt="A cinematic side profile of an athlete running through a dark urban environment, illuminated only by streaks of lime green light. The background is a blur of deep grays and blacks. The image feels fast-paced and technological, using heavy shadows to create depth and focus on the athlete's movement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQK1Fts8R_zqMilPLgn0xIiPnBhzIeL0iEKMZGz7eyV2ocatlQVjvI1wVNkl9Cx_z01Gj9txb4DFIDKY8B91-Pn-k5HsiaXqxOPBVsKJfaWPV9k8f3j9qhYFi60Gde64UfhTidmf78N9cXyc2J3rSAKaO_lPLmkng4psXuQoTvnGTVrg3n2XERQ0Y_AvWq9hDlvj6959x_nxWDM8TO3MNq4NhWAVkc_PseGuNMdYP3wikWvFB4n8WA3KD28PRDa6TBOncM8sF173w"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-on-surface truncate uppercase">Elena Roe</h3>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-display-stat text-lg leading-none">05</span>
+</div>
+</div>
+<div class="mt-2 w-full bg-surface-container-highest h-2 rounded-full overflow-hidden">
+<div class="bg-primary-fixed h-full opacity-50" style="width: 20%;"></div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="font-label-caps text-[10px] text-on-surface-variant">20% COMPLETE</span>
+<span class="font-label-caps text-[10px] text-on-surface-variant">STALLED</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Find Friends CTA -->
+<button class="w-full py-5 rounded-2xl bg-primary-fixed text-on-primary-fixed font-headline-md uppercase tracking-wider flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all mb-8">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+            Connect Contacts
+        </button>
+</main>
+<!-- Bottom Navigation Bar (Fixed) -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe-area-bottom bg-surface/80 backdrop-blur-xl border-t border-white/10">
+<div class="flex justify-around items-center w-full px-2 pt-2">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed group transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<!-- Calendar -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed group transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</a>
+<!-- Progress -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed group transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-label-caps text-label-caps mt-1">Progress</span>
+</a>
+<!-- Friends (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 group transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-caps text-label-caps mt-1">Friends</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed group transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Background Subtle Atmospheric Script -->
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.glass-panel').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.borderColor = 'rgba(195, 244, 0, 0.4)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+            });
+        });
+    </script>
+</body></html>

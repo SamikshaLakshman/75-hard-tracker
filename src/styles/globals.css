@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+
+@layer base {
+  :root {
+    --background: #f8f8f8;
+    --foreground: #1a1a1a;
+    --surface: #ffffff;
+    --surface-dim: #f0f0f0;
+    --surface-bright: #ffffff;
+    --surface-container: #f4f4f4;
+    --surface-container-low: #f8f8f8;
+    --surface-container-high: #ebebeb;
+    --surface-container-highest: #e0e0e0;
+    --border: #d4d4d4;
+  }
+
+  .dark {
+    --background: #000000;
+    --foreground: #e2e2e2;
+    --surface: #121212;
+    --surface-dim: #0a0a0a;
+    --surface-bright: #2c2c2c;
+    --surface-container: #1e2020;
+    --surface-container-low: #161616;
+    --surface-container-high: #282a2b;
+    --surface-container-highest: #333535;
+    --border: #333535;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface border border-border;
+  }
+  .dark .glass-card {
+    background: #121212;
+    border-color: #222222;
+  }
+
+  .glass-nav {
+    @apply bg-surface backdrop-blur-xl border-border;
+  }
+
+  .active-glow {
+    box-shadow: 0 0 15px rgba(195, 244, 0, 0.15);
+    border-color: #c3f400 !important;
+  }
+
+  .accent-glow {
+    box-shadow: 0 0 20px rgba(195, 244, 0, 0.3);
+  }
+
+  .progress-ring-circle {
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(195, 244, 0, 0.4);
+  }
+}

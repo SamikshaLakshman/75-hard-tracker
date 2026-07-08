@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .active-lime-glow {
+            box-shadow: 0 0 15px rgba(195, 244, 0, 0.15);
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            background-color: #000000;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#474747",
+                        "surface-container": "#1e2020",
+                        "on-primary-fixed": "#161e00",
+                        "primary-fixed-dim": "#abd600",
+                        "surface-container-highest": "#333535",
+                        "on-error": "#690005",
+                        "surface-container-high": "#282a2b",
+                        "outline": "#8e9379",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "error": "#ffb4ab",
+                        "on-primary": "#283500",
+                        "surface-container-lowest": "#0c0f0f",
+                        "primary-fixed": "#c3f400",
+                        "on-tertiary": "#313030",
+                        "surface-tint": "#abd600",
+                        "on-secondary-container": "#b5b5b5",
+                        "on-background": "#e2e2e2",
+                        "inverse-on-surface": "#2f3131",
+                        "on-tertiary-container": "#656464",
+                        "error-container": "#93000a",
+                        "surface": "#121414",
+                        "on-secondary": "#303030",
+                        "tertiary": "#ffffff",
+                        "surface-bright": "#37393a",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "on-primary-container": "#556d00",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "tertiary-fixed": "#e5e2e1",
+                        "inverse-primary": "#506600",
+                        "secondary-fixed": "#e2e2e2",
+                        "secondary": "#c6c6c6",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "surface-variant": "#333535",
+                        "surface-container-low": "#1a1c1c",
+                        "primary": "#ffffff",
+                        "primary-container": "#c3f400",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-dim": "#121414",
+                        "outline-variant": "#444933",
+                        "on-error-container": "#ffdad6",
+                        "background": "#121414",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-surface": "#e2e2e2",
+                        "on-surface-variant": "#c4c9ac",
+                        "tertiary-container": "#e5e2e1",
+                        "tertiary-fixed-dim": "#c8c6c5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target": "48px",
+                        "section-margin": "2rem",
+                        "container-padding": "1rem",
+                        "gutter": "1rem",
+                        "card-gap": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "stat-label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-stat": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "stat-label": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-stat": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant flex justify-between items-center px-container-padding h-touch-target">
+<button class="text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">bolt</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tighter text-primary-fixed">75 HARD</h1>
+<button class="text-primary-fixed hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</header>
+<main class="mt-16 px-container-padding space-y-section-margin max-w-[600px] mx-auto">
+<!-- Profile Header Section -->
+<section class="pt-gutter flex flex-col items-center text-center">
+<div class="relative mb-4">
+<div class="w-24 h-24 rounded-full border-2 border-primary-fixed p-1">
+<div class="w-full h-full rounded-full overflow-hidden bg-surface-container-high border border-outline-variant">
+<img class="w-full h-full object-cover grayscale brightness-110" data-alt="A cinematic, high-contrast close-up portrait of a determined athlete named Alex Forge. He has sharp features and intense eyes, illuminated by a singular, harsh electric lime green rim light that cuts through a pitch-black background. The style is moody and technical, reminiscent of high-end sports photography like a Whoop or Strava brand campaign, emphasizing grit and focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCihHNkhJOZnY-waObIqR95AvBJnuODdB66OOawtuGb-prHzYPoKF1BzT6-zOkAw77J1oKBVb6leIGOO9rIJN6_GqXX1mwjK4Q4fhQJvN8_Qlnawg6U77fvX2oksX_2JFECHTrtIfHisXN-Siv6f02qt-w_w_sjn5IO2SKacI-kf9MzVWDQHT4cyfmX4ESoaKid7o4JBvprPkuDup5wHpKGdBCBy2Hug__QYXBBXiGzZaosmHvA2cvm8Xp650XOukvx1k8o44MjXGI"/>
+</div>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded-full font-label-caps text-label-caps border-2 border-surface">
+                    LVL 24
+                </div>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Alex Forge</h2>
+<p class="font-label-caps text-label-caps text-primary-fixed tracking-[0.2em] mb-4">SAVAGE</p>
+<!-- XP Progress Bar -->
+<div class="w-full max-w-xs space-y-2">
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant">
+<span>1,240 XP</span>
+<span>2,000 XP</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary-fixed w-[62%] rounded-full shadow-[0_0_10px_rgba(195,244,0,0.3)]"></div>
+</div>
+</div>
+</section>
+<!-- Stats Bento Grid -->
+<section class="grid grid-cols-2 gap-card-gap">
+<div class="bg-surface-container-low border border-outline-variant p-4 rounded-xl flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Longest Streak</span>
+<div class="mt-2">
+<span class="font-display-stat text-display-stat text-primary-fixed">42</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant ml-1">DAYS</span>
+</div>
+</div>
+<div class="bg-surface-container-low border border-outline-variant p-4 rounded-xl flex flex-col justify-between">
+<span class="font-label-caps text-label-caps text-on-surface-variant">Total Completed</span>
+<div class="mt-2">
+<span class="font-display-stat text-display-stat text-primary-fixed">128</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant ml-1">DAYS</span>
+</div>
+</div>
+</section>
+<!-- Achievements Section -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">ACHIEVEMENTS</h3>
+<span class="font-label-caps text-label-caps text-primary-fixed">8 / 12</span>
+</div>
+<div class="grid grid-cols-4 gap-card-gap">
+<!-- Unlocked -->
+<div class="aspect-square bg-surface-container-high border border-primary-fixed/50 rounded-lg flex items-center justify-center active-lime-glow">
+<span class="material-symbols-outlined text-primary-fixed text-3xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<div class="aspect-square bg-surface-container-high border border-primary-fixed/50 rounded-lg flex items-center justify-center active-lime-glow">
+<span class="material-symbols-outlined text-primary-fixed text-3xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<div class="aspect-square bg-surface-container-high border border-primary-fixed/50 rounded-lg flex items-center justify-center active-lime-glow">
+<span class="material-symbols-outlined text-primary-fixed text-3xl" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<div class="aspect-square bg-surface-container-high border border-primary-fixed/50 rounded-lg flex items-center justify-center active-lime-glow">
+<span class="material-symbols-outlined text-primary-fixed text-3xl" style="font-variation-settings: 'FILL' 1;">timer</span>
+</div>
+<div class="aspect-square bg-surface-container-high border border-primary-fixed/50 rounded-lg flex items-center justify-center active-lime-glow">
+<span class="material-symbols-outlined text-primary-fixed text-3xl" style="font-variation-settings: 'FILL' 1;">fitness_center</span>
+</div>
+<!-- Locked -->
+<div class="aspect-square bg-surface-container-low border border-outline-variant/30 rounded-lg flex items-center justify-center grayscale opacity-30">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">star</span>
+</div>
+<div class="aspect-square bg-surface-container-low border border-outline-variant/30 rounded-lg flex items-center justify-center grayscale opacity-30">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">military_tech</span>
+</div>
+<div class="aspect-square bg-surface-container-low border border-outline-variant/30 rounded-lg flex items-center justify-center grayscale opacity-30">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">psychology</span>
+</div>
+</div>
+</section>
+<!-- Theme Selector -->
+<section class="space-y-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">INTERFACE THEME</h3>
+<div class="bg-surface-container-low border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-4 flex items-center justify-between border-b border-outline-variant bg-surface-container-high">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-black border border-primary-fixed rounded-md flex items-center justify-center">
+<div class="w-3 h-3 bg-primary-fixed rounded-full shadow-[0_0_8px_rgba(195,244,0,0.8)]"></div>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-semibold leading-none">Pitch Black</p>
+<p class="text-[12px] text-on-surface-variant">Active Theme</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-fixed">check_circle</span>
+</div>
+<div class="p-4 flex items-center justify-between opacity-50">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-[#1E1E1E] border border-outline-variant rounded-md"></div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-semibold leading-none">Midnight Slate</p>
+<p class="text-[12px] text-on-surface-variant">Locked Level 30</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">lock</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-t border-outline-variant">
+<div class="flex justify-around items-center h-20 px-container-padding max-w-[600px] mx-auto">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-caps text-label-caps">Calendar</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">donut_large</span>
+<span class="font-label-caps text-label-caps">Progress</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Friends</span>
+</button>
+<button class="flex flex-col items-center justify-center text-primary-fixed font-bold scale-110 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</button>
+</div>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-95');
+                setTimeout(() => this.classList.remove('scale-95'), 100);
+            });
+        });
+
+        // Pulsing glow for the current XP bar
+        const xpProgress = document.querySelector('.bg-primary-fixed');
+        if (xpProgress) {
+            setInterval(() => {
+                xpProgress.style.boxShadow = '0 0 20px rgba(195, 244, 0, 0.5)';
+                setTimeout(() => {
+                    xpProgress.style.boxShadow = '0 0 10px rgba(195, 244, 0, 0.2)';
+                }, 1000);
+            }, 2000);
+        }
+    </script>
+</body></html>

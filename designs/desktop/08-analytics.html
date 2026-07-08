@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>75 HARD | Performance Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#474747",
+                        "surface-container": "#1e2020",
+                        "on-primary-fixed": "#161e00",
+                        "primary-fixed-dim": "#abd600",
+                        "surface-container-highest": "#333535",
+                        "on-error": "#690005",
+                        "surface-container-high": "#282a2b",
+                        "outline": "#8e9379",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "error": "#ffb4ab",
+                        "on-primary": "#283500",
+                        "surface-container-lowest": "#0c0f0f",
+                        "primary-fixed": "#c3f400",
+                        "on-tertiary": "#313030",
+                        "surface-tint": "#abd600",
+                        "on-secondary-container": "#b5b5b5",
+                        "on-background": "#e2e2e2",
+                        "inverse-on-surface": "#2f3131",
+                        "on-tertiary-container": "#656464",
+                        "error-container": "#93000a",
+                        "surface": "#121414",
+                        "on-secondary": "#303030",
+                        "tertiary": "#ffffff",
+                        "surface-bright": "#37393a",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "on-primary-container": "#556d00",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "tertiary-fixed": "#e5e2e1",
+                        "inverse-primary": "#506600",
+                        "secondary-fixed": "#e2e2e2",
+                        "secondary": "#c6c6c6",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "surface-variant": "#333535",
+                        "surface-container-low": "#1a1c1c",
+                        "primary": "#ffffff",
+                        "primary-container": "#c3f400",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-dim": "#121414",
+                        "outline-variant": "#444933",
+                        "on-error-container": "#ffdad6",
+                        "background": "#121414",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-surface": "#e2e2e2",
+                        "on-surface-variant": "#c4c9ac",
+                        "tertiary-container": "#e5e2e1",
+                        "tertiary-fixed-dim": "#c8c6c5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target": "48px",
+                        "section-margin": "2rem",
+                        "container-padding": "1rem",
+                        "gutter": "1rem",
+                        "card-gap": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "stat-label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-stat": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["JetBrains Mono"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+            color: #e2e2e2;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(18, 20, 20, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid #222222;
+        }
+        .active-ring {
+            filter: drop-shadow(0 0 8px rgba(195, 244, 0, 0.3));
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen overflow-hidden">
+<!-- Sidebar Navigation (Desktop Anchor) -->
+<aside class="hidden md:flex flex-col w-64 bg-surface border-r border-outline-variant h-screen sticky top-0 z-50">
+<div class="p-8">
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tighter text-primary-fixed">75 HARD</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-1 opacity-60">PERFORMANCE HUD</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<!-- Labels from JSON: ["Home", "Calendar", "Progress", "Friends", "Profile"] -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-body-md text-body-md">Home</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-body-md text-body-md">Calendar</span>
+</a>
+<!-- Active: Progress -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-primary-container text-on-primary-container font-bold shadow-lg shadow-primary-container/10" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">donut_large</span>
+<span class="font-body-md text-body-md">Progress</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Friends</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-body-md text-body-md">Profile</span>
+</a>
+</nav>
+<div class="p-6 border-t border-outline-variant">
+<button class="flex items-center gap-3 text-on-surface-variant hover:text-primary-fixed-dim transition-colors">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">SYSTEM PREFS</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 h-screen overflow-y-auto bg-black relative">
+<!-- Top App Bar (Mobile Visibility handled by Responsive Pivot) -->
+<header class="md:hidden flex justify-between items-center px-container-padding h-touch-target bg-surface/80 backdrop-blur-xl border-b border-outline-variant fixed top-0 w-full z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed">bolt</span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tighter text-primary-fixed">75 HARD</h2>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</header>
+<div class="max-w-[1200px] mx-auto px-container-padding pt-24 md:pt-12 pb-32">
+<!-- Page Header -->
+<div class="mb-10">
+<h3 class="font-headline-lg text-headline-lg mb-2">Performance Dashboard</h3>
+<p class="text-on-surface-variant font-body-md max-w-2xl">Day 42 of 75. You are operating at 94% efficiency across all core disciplines. Keep pushing.</p>
+</div>
+<!-- Top Row: KPI Cards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-card-gap mb-section-margin">
+<!-- Weight Change -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant">WEIGHT LOSS</span>
+<span class="material-symbols-outlined text-primary-fixed">trending_down</span>
+</div>
+<div>
+<div class="font-display-stat text-display-stat text-primary-fixed">-14.2<span class="text-xl ml-1">LBS</span></div>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm">arrow_downward</span>
+<span class="font-stat-label text-stat-label text-primary-fixed-dim">2.1 lbs this week</span>
+</div>
+</div>
+</div>
+<!-- Avg Sleep -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant">AVG SLEEP</span>
+<span class="material-symbols-outlined text-primary-fixed">nights_stay</span>
+</div>
+<div>
+<div class="font-display-stat text-display-stat text-primary-fixed">7:24<span class="text-xl ml-1">HRS</span></div>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm">bolt</span>
+<span class="font-stat-label text-stat-label">92% Recovery Score</span>
+</div>
+</div>
+</div>
+<!-- Water Consistency -->
+<div class="glass-card p-6 rounded-2xl flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant">HYDRATION</span>
+<span class="material-symbols-outlined text-primary-fixed">water_drop</span>
+</div>
+<div>
+<div class="font-display-stat text-display-stat text-primary-fixed">100<span class="text-xl ml-1">%</span></div>
+<div class="flex items-center gap-1 text-on-surface-variant mt-1">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+<span class="font-stat-label text-stat-label">42 Day Streak</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Center: Large Multi-Line Chart (SVG Visualization) -->
+<section class="glass-card p-8 rounded-2xl mb-section-margin relative overflow-hidden">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+<div>
+<h4 class="font-headline-md text-headline-md">Body Composition vs Volume</h4>
+<p class="text-on-surface-variant font-body-md">Tracking the correlation between intensity and results.</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary-fixed"></div>
+<span class="font-label-caps text-label-caps">Weight</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-on-surface-variant"></div>
+<span class="font-label-caps text-label-caps">Workout Vol</span>
+</div>
+</div>
+</div>
+<!-- Simulated Recharts View -->
+<div class="h-80 w-full relative group">
+<svg class="w-full h-full preserve-3d" preserveaspectratio="none" viewbox="0 0 1000 300">
+<!-- Grid Lines -->
+<line stroke="#222" stroke-width="1" x1="0" x2="1000" y1="50" y2="50"></line>
+<line stroke="#222" stroke-width="1" x1="0" x2="1000" y1="125" y2="125"></line>
+<line stroke="#222" stroke-width="1" x1="0" x2="1000" y1="200" y2="200"></line>
+<line stroke="#222" stroke-width="1" x1="0" x2="1000" y1="275" y2="275"></line>
+<!-- Weight Line (Primary Lime) -->
+<path class="active-ring" d="M0,80 L100,85 L200,75 L300,95 L400,110 L500,105 L600,120 L700,135 L800,150 L900,145 L1000,160" fill="none" stroke="#c3f400" stroke-linecap="round" stroke-width="4"></path>
+<!-- Workout Volume Line (Gray) -->
+<path d="M0,250 L100,220 L200,240 L300,210 L400,200 L500,180 L600,210 L700,190 L800,170 L900,190 L1000,160" fill="none" stroke="#444" stroke-dasharray="8,4" stroke-linecap="round" stroke-width="3"></path>
+<!-- Dynamic Tooltip Marker -->
+<line class="opacity-0 group-hover:opacity-100 transition-opacity" stroke="#c3f400" stroke-dasharray="4,4" stroke-width="1" x1="800" x2="800" y1="0" y2="300"></line>
+</svg>
+<!-- Chart Hover Labels (Simulated) -->
+<div class="absolute bottom-[-24px] left-0 w-full flex justify-between font-label-caps text-[10px] text-on-surface-variant px-1">
+<span>DAY 1</span>
+<span>DAY 15</span>
+<span>DAY 30</span>
+<span>DAY 45</span>
+<span>DAY 60</span>
+<span>DAY 75</span>
+</div>
+</div>
+</section>
+<!-- Bottom: Consistency Bar Charts Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-card-gap">
+<!-- Habit 1: Indoor Workout -->
+<div class="glass-card p-4 rounded-xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary-fixed text-lg">fitness_center</span>
+<span class="font-label-caps text-label-caps">WORKOUT 1</span>
+</div>
+<div class="flex items-end gap-1 h-12">
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[90%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[95%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-surface-container-highest h-1 rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+</div>
+<p class="font-stat-label text-stat-label text-on-surface-variant mt-2 text-[10px]">98% COMPLETION</p>
+</div>
+<!-- Habit 2: Outdoor Workout -->
+<div class="glass-card p-4 rounded-xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary-fixed text-lg">nature</span>
+<span class="font-label-caps text-label-caps">WORKOUT 2</span>
+</div>
+<div class="flex items-end gap-1 h-12">
+<div class="w-full bg-primary-fixed h-[80%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[85%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-[90%] rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+</div>
+<p class="font-stat-label text-stat-label text-on-surface-variant mt-2 text-[10px]">100% COMPLETION</p>
+</div>
+<!-- Habit 3: Reading -->
+<div class="glass-card p-4 rounded-xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary-fixed text-lg">menu_book</span>
+<span class="font-label-caps text-label-caps">READING</span>
+</div>
+<div class="flex items-end gap-1 h-12">
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+</div>
+<p class="font-stat-label text-stat-label text-on-surface-variant mt-2 text-[10px]">100% COMPLETION</p>
+</div>
+<!-- Habit 4: Diet -->
+<div class="glass-card p-4 rounded-xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary-fixed text-lg">restaurant</span>
+<span class="font-label-caps text-label-caps">DIET</span>
+</div>
+<div class="flex items-end gap-1 h-12">
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+</div>
+<p class="font-stat-label text-stat-label text-on-surface-variant mt-2 text-[10px]">100% COMPLETION</p>
+</div>
+<!-- Habit 5: Photo -->
+<div class="glass-card p-4 rounded-xl">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary-fixed text-lg">photo_camera</span>
+<span class="font-label-caps text-label-caps">PROGRESS PIC</span>
+</div>
+<div class="flex items-end gap-1 h-12">
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-surface-container-highest h-1 rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+<div class="w-full bg-primary-fixed h-full rounded-t-sm"></div>
+</div>
+<p class="font-stat-label text-stat-label text-on-surface-variant mt-2 text-[10px]">96% COMPLETION</p>
+</div>
+</section>
+<!-- Atmospheric Image Section -->
+<div class="mt-section-margin grid grid-cols-1 md:grid-cols-2 gap-card-gap">
+<div class="h-64 rounded-2xl overflow-hidden relative group">
+<img class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-80 transition-opacity" data-alt="A moody, high-contrast black and white photograph of a dark, modern gym at dawn. The space is filled with heavy industrial equipment and cast-iron plates. Soft, blue-tinted light streaks across the floor from a large window. The atmosphere is quiet, intense, and focused, reflecting a disciplined morning routine in a pitch-black, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkFng0gZ1pEdYjVQRs_pKLr03yTrMvEP_WaxNjyNbQMgWUjOkdq_Rv-UEtyryRuzVFmfY37ufEz2S5k5PvmRgww_iJYMkIxFG2mYWB97VmP7xTEYJ8Y6uKGYIJ6jK1LfhVgZr2XhnAxF-Z6VFYTuaCYItzJaXfNphNXOF8JrE4Kn-Cw93jEr0cXyTMu21-xmys7VwS345rIYiGMvN6wcwDAj_ca6eqTGigvUjgyv_KCGMt_BLWiK-33NkgdclzeE5TKVfmQVlbQ2s"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+<span class="font-headline-md text-headline-md text-white">Morning Intensity</span>
+</div>
+</div>
+<div class="h-64 rounded-2xl overflow-hidden relative group">
+<div class="bg-cover bg-center w-full h-full opacity-60 group-hover:opacity-80 transition-opacity" data-alt="A close-up, high-detail macro shot of a rugged digital smartwatch displaying a complex health dashboard with neon lime green data visualizations against a pitch-black screen. The lighting is dramatic, highlighting the texture of the carbon-fiber strap and the crystal clarity of the display. The mood is technical, high-performance, and futuristic, aligning with premium athletic tracking software." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAMqfvdRBOXCJ3BXU9oQ3V1iQtbkqPXnWiRTTSmvrpYIdMkMb-GqXAPCJp6l50CqVKpnMVV0OMeKYvaqqgn6idoxmH-ZBTLWEQWJebzwy5I_MqZhGm8Gho9LAFcXam0_R89MDrL_ONuaw-pASfViPKtfb8sbUgyEiW3z-aLkJpwE9DP_jkxcpoj3iMq3P3QNTJZjS10rl5KsJNB0nqlPn1g01R34tYt02eoEf1wF3mTZwE77S3WsrrtE5Fr95JYgsQ9nhlbdVpZBbw')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-6">
+<span class="font-headline-md text-headline-md text-white">Data Clarity</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mobile Bottom Nav (Immutable Rule Execution) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-t border-outline-variant flex justify-around items-center h-20 px-container-padding">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-caps text-label-caps">Calendar</span>
+</div>
+<!-- Active: Progress -->
+<div class="flex flex-col items-center justify-center text-primary-fixed font-bold scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">donut_large</span>
+<span class="font-label-caps text-label-caps">Progress</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Friends</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</div>
+</nav>
+</main>
+<script>
+        // Simple Interaction logic for HUD feeling
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.style.transition = 'transform 0.2s ease-out';
+                card.style.borderColor = '#c3f400';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.borderColor = '#222222';
+            });
+        });
+    </script>
+</body></html>

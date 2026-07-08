@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>75 HARD | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#474747",
+                      "surface-container": "#1e2020",
+                      "on-primary-fixed": "#161e00",
+                      "primary-fixed-dim": "#abd600",
+                      "surface-container-highest": "#333535",
+                      "on-error": "#690005",
+                      "surface-container-high": "#282a2b",
+                      "outline": "#8e9379",
+                      "on-primary-fixed-variant": "#3c4d00",
+                      "error": "#ffb4ab",
+                      "on-primary": "#283500",
+                      "surface-container-lowest": "#0c0f0f",
+                      "primary-fixed": "#c3f400",
+                      "on-tertiary": "#313030",
+                      "surface-tint": "#abd600",
+                      "on-secondary-container": "#b5b5b5",
+                      "on-background": "#e2e2e2",
+                      "inverse-on-surface": "#2f3131",
+                      "on-tertiary-container": "#656464",
+                      "error-container": "#93000a",
+                      "surface": "#121414",
+                      "on-secondary": "#303030",
+                      "tertiary": "#ffffff",
+                      "surface-bright": "#37393a",
+                      "on-secondary-fixed": "#1b1b1b",
+                      "on-tertiary-fixed-variant": "#474646",
+                      "on-primary-container": "#556d00",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "tertiary-fixed": "#e5e2e1",
+                      "inverse-primary": "#506600",
+                      "secondary-fixed": "#e2e2e2",
+                      "secondary": "#c6c6c6",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "surface-variant": "#333535",
+                      "surface-container-low": "#1a1c1c",
+                      "primary": "#ffffff",
+                      "primary-container": "#c3f400",
+                      "inverse-surface": "#e2e2e2",
+                      "surface-dim": "#121414",
+                      "outline-variant": "#444933",
+                      "on-error-container": "#ffdad6",
+                      "background": "#121414",
+                      "on-secondary-fixed-variant": "#474747",
+                      "on-surface": "#e2e2e2",
+                      "on-surface-variant": "#c4c9ac",
+                      "tertiary-container": "#e5e2e1",
+                      "tertiary-fixed-dim": "#c8c6c5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "touch-target": "48px",
+                      "section-margin": "2rem",
+                      "container-padding": "1rem",
+                      "gutter": "1rem",
+                      "card-gap": "0.75rem"
+              },
+              "fontFamily": {
+                      "stat-label": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-stat": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-caps": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "stat-label": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-stat": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e2e2e2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-card {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid #222222;
+        }
+        .active-habit {
+            border-color: #c3f400 !important;
+            box-shadow: 0 0 15px rgba(195, 244, 0, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #333535;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- Top Navigation Anchor (Shared Component Mapping) -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant flex justify-between items-center px-container-padding h-touch-target">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed">bolt</span>
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tighter text-primary-fixed">75 HARD</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</header>
+<div class="flex h-screen pt-touch-target">
+<!-- Sidebar Navigation (Desktop only) -->
+<aside class="hidden md:flex flex-col w-64 glass-card border-r border-outline-variant py-8 px-4 gap-8">
+<nav class="flex flex-col gap-2">
+<!-- Home Active -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-primary-container text-on-primary-container font-bold transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-label-caps">HOME</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-caps text-label-caps">CALENDAR</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">donut_large</span>
+<span class="font-label-caps text-label-caps">PROGRESS</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">FRIENDS</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps">PROFILE</span>
+</a>
+</nav>
+<div class="mt-auto">
+<div class="glass-card p-4 rounded-xl border-primary-fixed/20">
+<p class="font-stat-label text-stat-label text-primary-fixed-dim mb-1">CURRENT PHASE</p>
+<p class="font-headline-md text-headline-md text-primary-fixed">PHASE 1</p>
+<div class="w-full bg-surface-container-highest h-1 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary-fixed h-full" style="width: 18.6%"></div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Feed (Center) -->
+<main class="flex-1 overflow-y-auto custom-scrollbar px-6 md:px-10 py-8 bg-black">
+<div class="max-w-[800px] mx-auto space-y-section-margin">
+<!-- Hero Streak Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-card-gap">
+<div class="glass-card p-8 rounded-2xl flex flex-col justify-center items-center text-center relative overflow-hidden group">
+<div class="absolute inset-0 opacity-10 bg-gradient-to-br from-primary-fixed to-transparent"></div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">CURRENT STREAK</p>
+<h2 class="font-display-stat text-display-stat text-primary-fixed tracking-tighter">DAY 14</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">61 DAYS REMAINING</p>
+</div>
+<div class="glass-card p-8 rounded-2xl flex flex-col justify-center relative">
+<p class="italic font-body-lg text-body-lg text-primary text-opacity-90 relative z-10">
+                            "Discipline is doing what needs to be done, even if you don't want to do it."
+                        </p>
+<p class="font-label-caps text-label-caps text-primary-fixed mt-4 relative z-10">— MENTAL TOUGHNESS</p>
+</div>
+</section>
+<!-- Daily Checklist -->
+<section class="space-y-card-gap">
+<div class="flex items-center justify-between mb-2">
+<h3 class="font-headline-md text-headline-md">TODAY'S TASKS</h3>
+<span class="font-label-caps text-label-caps text-primary-fixed">4/6 COMPLETE</span>
+</div>
+<!-- Habit Cards -->
+<div class="space-y-3">
+<!-- Task 1: Completed -->
+<div class="glass-card p-5 rounded-xl flex items-center justify-between active-habit group transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">restaurant</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-primary">Strict Diet</h4>
+<p class="font-stat-label text-stat-label text-on-surface-variant">No cheat meals or alcohol</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-fixed text-3xl">check_circle</span>
+</div>
+<!-- Task 2: Completed -->
+<div class="glass-card p-5 rounded-xl flex items-center justify-between active-habit group transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">fitness_center</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-primary">Workout 1 (45m)</h4>
+<p class="font-stat-label text-stat-label text-on-surface-variant">Morning Strength Session</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-fixed text-3xl">check_circle</span>
+</div>
+<!-- Task 3: Incomplete -->
+<div class="glass-card p-5 rounded-xl flex items-center justify-between border-outline-variant hover:border-primary-fixed/50 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">water_drop</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-primary">Gallon of Water</h4>
+<p class="font-stat-label text-stat-label text-on-surface-variant">3.2L / 3.8L consumed</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-surface-container-highest text-3xl">radio_button_unchecked</span>
+</div>
+<!-- Task 4: Incomplete -->
+<div class="glass-card p-5 rounded-xl flex items-center justify-between border-outline-variant hover:border-primary-fixed/50 transition-all cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">auto_stories</span>
+</div>
+<div>
+<h4 class="font-body-lg text-body-lg font-bold text-primary">Read 10 Pages</h4>
+<p class="font-stat-label text-stat-label text-on-surface-variant">Non-fiction / Personal Development</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-surface-container-highest text-3xl">radio_button_unchecked</span>
+</div>
+</div>
+</section>
+<!-- Heatmap (GitHub Style) -->
+<section class="glass-card p-6 rounded-2xl overflow-hidden">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">75 DAY PROGRESSION</h3>
+<span class="text-xs font-stat-label text-on-surface-variant">Current: Day 14/75</span>
+</div>
+<div class="grid grid-cols-11 md:grid-cols-15 gap-1.5 overflow-x-auto pb-2">
+<!-- Simulated 75 days grid -->
+<script>
+                            const gridContainer = document.currentScript.parentElement;
+                            for (let i = 1; i <= 75; i++) {
+                                const day = document.createElement('div');
+                                day.className = `aspect-square rounded-[2px] transition-all duration-300 ${i <= 14 ? 'bg-primary-fixed shadow-[0_0_8px_rgba(195,244,0,0.4)]' : 'bg-surface-container-highest opacity-30'} ${i === 14 ? 'animate-pulse ring-2 ring-primary-fixed ring-offset-2 ring-offset-black' : ''}`;
+                                day.title = `Day ${i}`;
+                                gridContainer.appendChild(day);
+                            }
+                        </script>
+</div>
+</section>
+</div>
+</main>
+<!-- Right Sidebar (Friends & Stats) -->
+<aside class="hidden xl:flex flex-col w-80 glass-card border-l border-outline-variant py-8 px-6 gap-8 overflow-y-auto custom-scrollbar">
+<!-- XP Stats Section -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">YOUR PERFORMANCE</h3>
+<span class="material-symbols-outlined text-primary-fixed">insights</span>
+</div>
+<div class="space-y-4">
+<div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant">
+<div class="flex justify-between items-center mb-1">
+<span class="font-stat-label text-stat-label text-on-surface-variant">EXPERIENCE</span>
+<span class="font-stat-label text-stat-label text-primary-fixed">LVL 14</span>
+</div>
+<div class="w-full bg-black h-2 rounded-full overflow-hidden">
+<div class="bg-primary-fixed h-full" style="width: 72%"></div>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2 text-right">450 XP to LVL 15</p>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant">
+<p class="text-[10px] font-label-caps text-on-surface-variant">TOTAL XP</p>
+<p class="font-headline-md text-headline-md text-primary">12.4k</p>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-low border border-outline-variant">
+<p class="text-[10px] font-label-caps text-on-surface-variant">RANK</p>
+<p class="font-headline-md text-headline-md text-primary">#42</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Friends Leaderboard -->
+<section class="flex-1">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant">CREW LEADERBOARD</h3>
+<button class="text-[10px] font-label-caps text-primary-fixed hover:underline">VIEW ALL</button>
+</div>
+<div class="space-y-4">
+<!-- User 1 -->
+<div class="flex items-center gap-4 p-2 rounded-xl hover:bg-surface-container transition-colors cursor-pointer">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-primary-fixed" data-alt="A gritty, cinematic close-up portrait of a determined male athlete in a dark gym environment. High-contrast lighting with electric lime green rim lights emphasizing muscle definition. The style is modern, professional fitness photography with a minimalist dark-mode aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDKvo1rhwNcg2_8OnnqXdB-FsPVF7ngkEp7EBaFVyO-iO3hBSCHc8ZXjpFrUPrhj7B4ArNYxkTKxCCbz71mE35WCf3aGtYEyT5YUaoMYiz4XnbgAEM4psKuI_DA5D90jdno6M5v6Z_Y_12iq4GE80aKb9H1ki0ymg_NJG56S47vu1VyhN4RdqEiYO7yKQD3fYJooqC7Y5itnC6kB-KCWRa_cXFkLx2bO34YVUrHf0_9_3hLD0cvXrSWBQYUOD3F_v8dYpGaoJzRhN0')"></div>
+<div class="absolute -top-1 -left-1 bg-primary-fixed text-black text-[8px] font-bold px-1 rounded-full">1</div>
+</div>
+<div class="flex-1">
+<p class="font-stat-label text-stat-label text-primary">Marcus V.</p>
+<p class="text-[10px] text-on-surface-variant">Day 48 • Pro Elite</p>
+</div>
+<p class="font-label-caps text-label-caps text-primary-fixed">45k</p>
+</div>
+<!-- User 2 -->
+<div class="flex items-center gap-4 p-2 rounded-xl hover:bg-surface-container transition-colors cursor-pointer">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border border-outline-variant" data-alt="A focused female runner at dawn, silhouetted against a dark urban skyline. The scene is illuminated by subtle electric lime neon accents from nearby digital billboards. Minimalist composition, professional sports photography, high-performance tech aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAIaQ3U36UQPfiSuMUGTSwqTA5kvYFoxRysegsytOQEDa34vHmcmDW2ZGV-O2h-NugWzjV-oysP2eed-Mcpp9dBzJTxz_1X7j1VSniXFLk6jENtpEl05Z4Mw4ml4WIkZLCCq7RlgYCf3mO-mAjPH_dCD0xFWpjhhazExyam3toHCRSBPiLRhvXXQUu0f19C-jEZA4Zpeqwo07Am7wYBRX42jCz2ex7i7v5a-X_WgLmvL3qvzDMv2MpxipG3uf7ZHrh7pCu_VaPnnDI')"></div>
+<div class="absolute -top-1 -left-1 bg-surface-container-highest text-white text-[8px] font-bold px-1 rounded-full">2</div>
+</div>
+<div class="flex-1">
+<p class="font-stat-label text-stat-label text-primary">Sarah J.</p>
+<p class="text-[10px] text-on-surface-variant">Day 32 • Advanced</p>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant">38k</p>
+</div>
+<!-- User 3 -->
+<div class="flex items-center gap-4 p-2 rounded-xl hover:bg-surface-container transition-colors cursor-pointer ring-1 ring-primary-fixed/20 bg-primary-fixed/5">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-cover bg-center border-2 border-primary-fixed" data-alt="A profile photo of a modern athlete wearing tech-wear. The lighting is moody and dark with a single sharp electric lime green light source from the side. High-performance aesthetic, professional character design, minimalist dark palette." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAAVFgAghPKddybO1Ugadi51Kx0EHzWiIs1tLkQ5o66hu8WtJ8yhMrKzkmTu57J8yjI1pEpwqD9JNU4coAXO4LAyJn2or2PQCUleTdr8PZvxoRD9Or95PuL6p3pQngMr1F-RnCmTq_3s2o4qEmutr89KZ-3WudSAYgMPMjs7gucc7G7auuycatfnUCbcdtVA0V6LQdyjvvL1g3JmJ2NeAW85F-By-YyXOTceOkRIlTkvI_t7IvfF3zTZofLgvfWdFtiSDj3ijU8Nck')"></div>
+<div class="absolute -top-1 -left-1 bg-surface-container-highest text-white text-[8px] font-bold px-1 rounded-full">3</div>
+</div>
+<div class="flex-1">
+<p class="font-stat-label text-stat-label text-primary font-bold">You</p>
+<p class="text-[10px] text-primary-fixed-dim">Day 14 • Rising</p>
+</div>
+<p class="font-label-caps text-label-caps text-primary-fixed">12.4k</p>
+</div>
+</div>
+</section>
+<!-- Bottom Action -->
+<button class="w-full bg-primary-fixed text-on-primary-fixed font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-caps text-label-caps">LOG PROGRESS</span>
+</button>
+</aside>
+</div>
+<!-- Mobile Bottom NavBar (Shared Component Logic) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 pb-safe bg-surface/80 backdrop-blur-xl border-t border-outline-variant flex justify-around items-center h-20 px-container-padding">
+<div class="flex flex-col items-center justify-center text-primary-fixed font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-caps text-[10px] mt-1">HOME</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-label-caps text-[10px] mt-1">CAL</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<div class="bg-primary-fixed w-12 h-12 rounded-full -mt-10 flex items-center justify-center text-on-primary-fixed shadow-lg shadow-primary-fixed/20">
+<span class="material-symbols-outlined">add</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">donut_large</span>
+<span class="font-label-caps text-[10px] mt-1">PROG</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-[10px] mt-1">ME</span>
+</div>
+</nav>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                if(!card.classList.contains('active-habit')) {
+                    card.style.borderColor = 'rgba(195,244,0,0.3)';
+                }
+            });
+            card.addEventListener('mouseleave', () => {
+                if(!card.classList.contains('active-habit')) {
+                    card.style.borderColor = '#222222';
+                }
+            });
+        });
+
+        // Habit Toggle Logic
+        document.querySelectorAll('.glass-card').forEach(card => {
+            if(card.querySelector('h4')) {
+                card.addEventListener('click', function() {
+                    const icon = this.querySelector('.material-symbols-outlined:last-child');
+                    const iconBox = this.querySelector('.w-12');
+                    
+                    if (this.classList.contains('active-habit')) {
+                        this.classList.remove('active-habit', 'border-primary-fixed');
+                        this.classList.add('border-outline-variant');
+                        icon.textContent = 'radio_button_unchecked';
+                        icon.className = 'material-symbols-outlined text-surface-container-highest text-3xl';
+                        iconBox.className = 'w-12 h-12 rounded-lg bg-surface-container-highest flex items-center justify-center text-on-surface';
+                    } else {
+                        this.classList.add('active-habit');
+                        this.classList.remove('border-outline-variant');
+                        icon.textContent = 'check_circle';
+                        icon.className = 'material-symbols-outlined text-primary-fixed text-3xl';
+                        iconBox.className = 'w-12 h-12 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container';
+                    }
+                });
+            }
+        });
+    </script>
+</body></html>

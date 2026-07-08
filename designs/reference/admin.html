@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>75 HARD | Admin Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #000000;
+            color: #e2e2e2;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            background: rgba(18, 18, 18, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid #222222;
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(171, 214, 0, 0.15);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0c0f0f;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #333535;
+            border-radius: 10px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#474747",
+                      "surface-container": "#1e2020",
+                      "on-primary-fixed": "#161e00",
+                      "primary-fixed-dim": "#abd600",
+                      "surface-container-highest": "#333535",
+                      "on-error": "#690005",
+                      "surface-container-high": "#282a2b",
+                      "outline": "#8e9379",
+                      "on-primary-fixed-variant": "#3c4d00",
+                      "error": "#ffb4ab",
+                      "on-primary": "#283500",
+                      "surface-container-lowest": "#0c0f0f",
+                      "primary-fixed": "#c3f400",
+                      "on-tertiary": "#313030",
+                      "surface-tint": "#abd600",
+                      "on-secondary-container": "#b5b5b5",
+                      "on-background": "#e2e2e2",
+                      "inverse-on-surface": "#2f3131",
+                      "on-tertiary-container": "#656464",
+                      "error-container": "#93000a",
+                      "surface": "#121414",
+                      "on-secondary": "#303030",
+                      "tertiary": "#ffffff",
+                      "surface-bright": "#37393a",
+                      "on-secondary-fixed": "#1b1b1b",
+                      "on-tertiary-fixed-variant": "#474646",
+                      "on-primary-container": "#556d00",
+                      "secondary-fixed-dim": "#c6c6c6",
+                      "tertiary-fixed": "#e5e2e1",
+                      "inverse-primary": "#506600",
+                      "secondary-fixed": "#e2e2e2",
+                      "secondary": "#c6c6c6",
+                      "on-tertiary-fixed": "#1c1b1b",
+                      "surface-variant": "#333535",
+                      "surface-container-low": "#1a1c1c",
+                      "primary": "#ffffff",
+                      "primary-container": "#c3f400",
+                      "inverse-surface": "#e2e2e2",
+                      "surface-dim": "#121414",
+                      "outline-variant": "#444933",
+                      "on-error-container": "#ffdad6",
+                      "background": "#121414",
+                      "on-secondary-fixed-variant": "#474747",
+                      "on-surface": "#e2e2e2",
+                      "on-surface-variant": "#c4c9ac",
+                      "tertiary-container": "#e5e2e1",
+                      "tertiary-fixed-dim": "#c8c6c5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "touch-target": "48px",
+                      "section-margin": "2rem",
+                      "container-padding": "1rem",
+                      "gutter": "1rem",
+                      "card-gap": "0.75rem"
+              },
+              "fontFamily": {
+                      "stat-label": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display-stat": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-caps": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "stat-label": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-stat": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background min-h-screen font-body-md overflow-x-hidden">
+<!-- Top Navigation Shell -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant flex justify-between items-center px-container-padding h-touch-target">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="bolt">bolt</span>
+<h1 class="font-headline-lg text-headline-lg font-bold tracking-tighter text-primary-fixed uppercase">75 HARD</h1>
+<span class="font-label-caps text-label-caps bg-primary-fixed/10 text-primary-fixed px-2 py-0.5 rounded border border-primary-fixed/20 ml-2">ADMIN</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary-fixed font-bold font-label-caps text-label-caps transition-opacity hover:opacity-80" href="#">OVERVIEW</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps transition-opacity hover:opacity-80" href="#">USER MGMT</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps transition-opacity hover:opacity-80" href="#">ANALYTICS</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps transition-opacity hover:opacity-80" href="#">SYSTEM</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="person">person</span>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-12 px-container-padding max-w-[1400px] mx-auto space-y-card-gap">
+<!-- KPI Bar -->
+<section class="grid grid-cols-2 lg:grid-cols-4 gap-card-gap">
+<div class="glass-panel p-4 rounded-xl flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">DAU</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-stat text-display-stat text-primary-fixed">12.4K</span>
+<span class="text-primary-fixed-dim text-xs font-bold">+14%</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary-fixed h-full w-[70%]"></div>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-xl flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">WAU</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-stat text-display-stat text-primary-fixed">84.2K</span>
+<span class="text-primary-fixed-dim text-xs font-bold">+8%</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary-fixed h-full w-[62%]"></div>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-xl flex flex-col gap-1">
+<span class="font-label-caps text-label-caps text-on-surface-variant">MAU</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-stat text-display-stat text-primary-fixed">312K</span>
+<span class="text-primary-fixed-dim text-xs font-bold">+22%</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary-fixed h-full w-[85%]"></div>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-xl flex flex-col gap-1 border-primary-fixed/30 active-glow">
+<span class="font-label-caps text-label-caps text-primary-fixed-dim">COMPLETION RATE</span>
+<div class="flex items-baseline gap-2">
+<span class="font-display-stat text-display-stat text-primary-fixed">4.2%</span>
+<span class="text-error text-xs font-bold">-0.5%</span>
+</div>
+<div class="w-full bg-surface-container-lowest h-1 rounded-full mt-2 overflow-hidden">
+<div class="bg-primary-fixed h-full w-[4%]"></div>
+</div>
+</div>
+</section>
+<!-- Middle Section: Visualizations & Feature Flags -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-card-gap">
+<!-- Left: Trends & Insights -->
+<div class="lg:col-span-8 flex flex-col gap-card-gap">
+<div class="glass-panel p-6 rounded-xl h-full flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md text-primary">Global Health Matrix</h2>
+<div class="flex gap-2">
+<button class="bg-surface-container-highest px-3 py-1 rounded text-xs font-label-caps text-label-caps border border-outline-variant hover:border-primary-fixed-dim transition-colors">7 DAYS</button>
+<button class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded text-xs font-label-caps text-label-caps transition-transform active:scale-95">30 DAYS</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow">
+<!-- Failure Reasons Chart -->
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-4">FAILURE REASONS</span>
+<div class="relative w-full aspect-square flex items-center justify-center">
+<!-- SVG Pie Chart Placeholder -->
+<svg class="w-48 h-48 transform -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="transparent" r="16" stroke="#222" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="16" stroke="#abd600" stroke-dasharray="45, 100" stroke-dashoffset="0" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="16" stroke="#474747" stroke-dasharray="25, 100" stroke-dashoffset="-45" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="16" stroke="#ffffff" stroke-dasharray="15, 100" stroke-dashoffset="-70" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="16" stroke="#690005" stroke-dasharray="15, 100" stroke-dashoffset="-85" stroke-width="4"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-display-stat text-2xl text-primary-fixed">88%</span>
+<span class="text-[10px] font-label-caps text-on-surface-variant">DROP OFF</span>
+</div>
+</div>
+<ul class="mt-4 space-y-2">
+<li class="flex items-center gap-2 text-xs">
+<div class="w-2 h-2 rounded-full bg-primary-fixed-dim"></div>
+<span class="flex-grow text-on-surface-variant">Missed Second Workout</span>
+<span class="font-bold">45%</span>
+</li>
+<li class="flex items-center gap-2 text-xs">
+<div class="w-2 h-2 rounded-full bg-secondary-container"></div>
+<span class="flex-grow text-on-surface-variant">Water Intake Deficit</span>
+<span class="font-bold">25%</span>
+</li>
+<li class="flex items-center gap-2 text-xs">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+<span class="flex-grow text-on-surface-variant">Alcohol Violation</span>
+<span class="font-bold">15%</span>
+</li>
+<li class="flex items-center gap-2 text-xs">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="flex-grow text-on-surface-variant">Other</span>
+<span class="font-bold">15%</span>
+</li>
+</ul>
+</div>
+<!-- Weight Trend Chart -->
+<div class="flex flex-col">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-4">AVG WEIGHT DELTA (KG)</span>
+<div class="flex-grow flex items-end gap-1 min-h-[160px] pb-4">
+<div class="bg-surface-container-highest w-full hover:bg-primary-fixed/40 transition-colors rounded-t h-[40%]"></div>
+<div class="bg-surface-container-highest w-full hover:bg-primary-fixed/40 transition-colors rounded-t h-[35%]"></div>
+<div class="bg-surface-container-highest w-full hover:bg-primary-fixed/40 transition-colors rounded-t h-[55%]"></div>
+<div class="bg-surface-container-highest w-full hover:bg-primary-fixed/40 transition-colors rounded-t h-[70%]"></div>
+<div class="bg-surface-container-highest w-full hover:bg-primary-fixed/40 transition-colors rounded-t h-[65%]"></div>
+<div class="bg-primary-fixed w-full hover:opacity-80 transition-colors rounded-t h-[90%]"></div>
+<div class="bg-surface-container-highest w-full hover:bg-primary-fixed/40 transition-colors rounded-t h-[82%]"></div>
+<div class="bg-surface-container-highest w-full hover:bg-primary-fixed/40 transition-colors rounded-t h-[75%]"></div>
+<div class="bg-surface-container-highest w-full hover:bg-primary-fixed/40 transition-colors rounded-t h-[60%]"></div>
+<div class="bg-surface-container-highest w-full hover:bg-primary-fixed/40 transition-colors rounded-t h-[88%]"></div>
+</div>
+<div class="flex justify-between text-[10px] font-label-caps text-on-surface-variant">
+<span>JAN 01</span>
+<span>TODAY</span>
+</div>
+<div class="mt-4 p-3 rounded-lg bg-surface-container-low border border-outline-variant/30">
+<div class="flex justify-between items-center">
+<span class="text-xs text-on-surface-variant">Global Avg Loss</span>
+<span class="text-lg font-bold text-primary-fixed">-6.8kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Feature Flags -->
+<div class="lg:col-span-4 flex flex-col gap-card-gap">
+<div class="glass-panel p-6 rounded-xl h-full border-primary-fixed/10">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="terminal">terminal</span>
+<h2 class="font-headline-md text-headline-md text-primary">System Toggles</h2>
+</div>
+<div class="space-y-4">
+<!-- Flag 1 -->
+<div class="flex items-center justify-between p-4 rounded-lg bg-surface-container-low border border-outline-variant/20 hover:border-primary-fixed/30 transition-colors">
+<div class="flex flex-col">
+<span class="font-bold text-sm">Friends &amp; Social</span>
+<span class="text-xs text-on-surface-variant">Global feed and follow system</span>
+</div>
+<button class="w-10 h-5 rounded-full bg-secondary-container relative transition-colors duration-200 focus:outline-none" onclick="this.classList.toggle('bg-primary-fixed'); this.querySelector('div').classList.toggle('translate-x-5');">
+<div class="w-4 h-4 rounded-full bg-white absolute top-0.5 left-0.5 transition-transform duration-200"></div>
+</button>
+</div>
+<!-- Flag 2 -->
+<div class="flex items-center justify-between p-4 rounded-lg bg-surface-container-low border border-outline-variant/20 hover:border-primary-fixed/30 transition-colors">
+<div class="flex flex-col">
+<span class="font-bold text-sm">Strava Integration</span>
+<span class="text-xs text-on-surface-variant">Auto-sync outdoor workouts</span>
+</div>
+<button class="w-10 h-5 rounded-full bg-primary-fixed relative transition-colors duration-200 focus:outline-none" onclick="this.classList.toggle('bg-primary-fixed'); this.querySelector('div').classList.toggle('translate-x-5');">
+<div class="w-4 h-4 rounded-full bg-white absolute top-0.5 left-0.5 translate-x-5 transition-transform duration-200"></div>
+</button>
+</div>
+<!-- Flag 3 -->
+<div class="flex items-center justify-between p-4 rounded-lg bg-surface-container-low border border-outline-variant/20 hover:border-primary-fixed/30 transition-colors">
+<div class="flex flex-col">
+<span class="font-bold text-sm">AI Form Coaching</span>
+<span class="text-xs text-on-surface-variant">Computer vision for reps</span>
+</div>
+<button class="w-10 h-5 rounded-full bg-secondary-container relative transition-colors duration-200 focus:outline-none" onclick="this.classList.toggle('bg-primary-fixed'); this.querySelector('div').classList.toggle('translate-x-5');">
+<div class="w-4 h-4 rounded-full bg-white absolute top-0.5 left-0.5 transition-transform duration-200"></div>
+</button>
+</div>
+<!-- Flag 4 -->
+<div class="flex items-center justify-between p-4 rounded-lg bg-surface-container-low border border-outline-variant/20 hover:border-primary-fixed/30 transition-colors">
+<div class="flex flex-col">
+<span class="font-bold text-sm">Advanced Reports</span>
+<span class="text-xs text-on-surface-variant">CSV exports and PDF summaries</span>
+</div>
+<button class="w-10 h-5 rounded-full bg-primary-fixed relative transition-colors duration-200 focus:outline-none" onclick="this.classList.toggle('bg-primary-fixed'); this.querySelector('div').classList.toggle('translate-x-5');">
+<div class="w-4 h-4 rounded-full bg-white absolute top-0.5 left-0.5 translate-x-5 transition-transform duration-200"></div>
+</button>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant/20">
+<button class="w-full py-3 rounded-lg bg-primary-fixed text-on-primary-fixed font-label-caps text-label-caps font-bold transition-transform active:scale-[0.98]">
+                            DEPLOY CHANGES
+                        </button>
+<p class="text-[10px] text-on-surface-variant text-center mt-3 uppercase tracking-widest">v2.4.0-stable</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom: Recent User Activity Table -->
+<section class="glass-panel rounded-xl overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-primary">Live Intake Stream</h2>
+<div class="relative">
+<input class="bg-surface-container-lowest border border-outline-variant rounded-full px-10 py-1.5 text-xs text-on-surface focus:outline-none focus:border-primary-fixed-dim w-64 transition-all" placeholder="Search users..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm" data-icon="search">search</span>
+</div>
+</div>
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/20">USER</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/20">DAY</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/20">STATUS</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/20">LAST TASK</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant/20 text-right">TIMESTAMP</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-fixed/20 flex items-center justify-center font-bold text-primary-fixed text-xs">JD</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold group-hover:text-primary-fixed transition-colors">John Doe</span>
+<span class="text-[10px] text-on-surface-variant uppercase">PRO SUBSCRIBER</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-label-caps text-label-caps">42 / 75</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed/10 text-primary-fixed text-[10px] font-bold border border-primary-fixed/20">ACTIVE</span>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant italic">"Finished second workout (45m Running)"</td>
+<td class="px-6 py-4 text-right font-label-caps text-label-caps text-on-surface-variant">2m ago</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-error/20 flex items-center justify-center font-bold text-error text-xs">AS</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold group-hover:text-primary-fixed transition-colors">Alice Smith</span>
+<span class="text-[10px] text-on-surface-variant uppercase">FREE TIER</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-label-caps text-label-caps">12 / 75</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-full bg-error/10 text-error text-[10px] font-bold border border-error/20">FAILED</span>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant italic">"Forgot to log water intake"</td>
+<td class="px-6 py-4 text-right font-label-caps text-label-caps text-on-surface-variant">14m ago</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-white/10 flex items-center justify-center font-bold text-white text-xs">MK</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold group-hover:text-primary-fixed transition-colors">Marcus Kane</span>
+<span class="text-[10px] text-on-surface-variant uppercase">PRO SUBSCRIBER</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-label-caps text-label-caps">74 / 75</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed/10 text-primary-fixed text-[10px] font-bold border border-primary-fixed/20">FINAL STRETCH</span>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant italic">"Reading 10 pages complete"</td>
+<td class="px-6 py-4 text-right font-label-caps text-label-caps text-on-surface-variant">25m ago</td>
+</tr>
+<tr class="hover:bg-surface-container-highest/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-fixed/20 flex items-center justify-center font-bold text-primary-fixed text-xs">EL</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold group-hover:text-primary-fixed transition-colors">Elena Lopez</span>
+<span class="text-[10px] text-on-surface-variant uppercase">ALPHA TESTER</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-label-caps text-label-caps">04 / 75</td>
+<td class="px-6 py-4">
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed/10 text-primary-fixed text-[10px] font-bold border border-primary-fixed/20">ACTIVE</span>
+</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant italic">"Morning outdoor workout complete"</td>
+<td class="px-6 py-4 text-right font-label-caps text-label-caps text-on-surface-variant">38m ago</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-4 bg-surface-container-low flex items-center justify-between">
+<span class="text-xs text-on-surface-variant font-label-caps">STREAMING DATA... <span class="text-primary-fixed animate-pulse">●</span></span>
+<div class="flex gap-2">
+<button class="p-1.5 rounded bg-surface-container-highest border border-outline-variant hover:border-primary-fixed-dim text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-1.5 rounded bg-surface-container-highest border border-outline-variant hover:border-primary-fixed-dim text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Nav (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-t border-outline-variant flex justify-around items-center h-20 px-container-padding max-w-[600px] mx-auto left-0 right-0">
+<a class="flex flex-col items-center justify-center text-primary-fixed font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-label-caps">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-caps text-label-caps">Calendar</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="donut_large">donut_large</span>
+<span class="font-label-caps text-label-caps">Progress</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-caps text-label-caps">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for table rows and buttons
+        document.querySelectorAll('table tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                row.style.transform = 'scale(0.995)';
+                setTimeout(() => { row.style.transform = 'scale(1)'; }, 100);
+            });
+        });
+
+        // Simulating live data update pulse
+        setInterval(() => {
+            const pulse = document.querySelector('.animate-pulse');
+            if(pulse) {
+                pulse.classList.remove('text-primary-fixed');
+                pulse.classList.add('text-primary-fixed-dim');
+                setTimeout(() => {
+                    pulse.classList.remove('text-primary-fixed-dim');
+                    pulse.classList.add('text-primary-fixed');
+                }, 500);
+            }
+        }, 3000);
+    </script>
+</body></html>

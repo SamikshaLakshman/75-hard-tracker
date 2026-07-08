@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Progress &amp; Insights | 75 HARD</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+            color: #e2e4cf;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .lime-glow {
+            box-shadow: 0 0 15px rgba(195, 244, 0, 0.3);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #333627; border-radius: 10px; }
+        
+        .chart-container {
+            position: relative;
+            height: 180px;
+            width: 100%;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#2f3223",
+                        "on-surface": "#e2e4cf",
+                        "on-background": "#e2e4cf",
+                        "on-tertiary-fixed": "#0b1d29",
+                        "surface-container-low": "#1a1d10",
+                        "on-primary-fixed": "#161e00",
+                        "on-error-container": "#ffdad6",
+                        "surface": "#111508",
+                        "surface-dim": "#111508",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#e2e4cf",
+                        "tertiary-fixed": "#d2e5f5",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "outline-variant": "#444933",
+                        "primary-container": "#c3f400",
+                        "surface-tint": "#abd600",
+                        "on-tertiary-container": "#556774",
+                        "surface-container-high": "#282b1d",
+                        "inverse-primary": "#506600",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "on-primary": "#283500",
+                        "tertiary": "#ffffff",
+                        "on-secondary": "#313030",
+                        "primary-fixed": "#c3f400",
+                        "on-primary-container": "#556d00",
+                        "error-container": "#93000a",
+                        "tertiary-container": "#d2e5f5",
+                        "primary": "#ffffff",
+                        "surface-container-highest": "#333627",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed-variant": "#374956",
+                        "on-tertiary": "#21323e",
+                        "surface-bright": "#373b2c",
+                        "outline": "#8e9379",
+                        "primary-fixed-dim": "#abd600",
+                        "on-secondary-fixed-variant": "#474746",
+                        "on-secondary-container": "#b7b5b4",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "background": "#111508",
+                        "surface-container-lowest": "#0c0f04",
+                        "tertiary-fixed-dim": "#b6c9d8",
+                        "secondary": "#c8c6c5",
+                        "surface-container": "#1e2113",
+                        "surface-variant": "#333627",
+                        "secondary-container": "#474746",
+                        "on-surface-variant": "#c4c9ac",
+                        "secondary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-gap": "16px",
+                        "safe-area-bottom": "84px",
+                        "grid-gutter": "12px",
+                        "container-padding": "20px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-stat": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-stat": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background pb-safe-area-bottom overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex justify-between items-center px-container-padding py-4 max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed">fitness_center</span>
+<h1 class="font-display-stat text-primary-fixed tracking-tighter italic text-2xl">75 HARD</h1>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A gritty, high-contrast black and white portrait of a determined athlete with sweat on their brow, illuminated by a harsh side-light. The aesthetic is raw and cinematic, matching a dark high-performance fitness application theme with intense Electric Lime accents in the background environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHQXJajddK38K-Lg48bznqdUXRyfR28JryOuQRoo-Ov2GdipliQ5gaTopwyYwn_RZyjYJkgAZFtM0WkA0ZyVUahYUiM250hWHj5PXg2g_SoJV3s1DDJ06knZfurFMzPTIeK9h7c8uKoM1Gyt5-if3q25FsOel33qv0cX_vj24n0IprtNN51ED8_Mz9PCyDKyV6F5oxuLCt-dYiitdCbRmoMwSPKDuShn6Y4HXtGrSL0QZitryhkz3S7wMK7zMbK0zZH2yJwKmIyI8"/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-container-padding max-w-7xl mx-auto pb-12 space-y-stack-gap">
+<!-- Header Insights Section -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-grid-gutter">
+<!-- Completion Probability -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">COMPLETION PROBABILITY</span>
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">insights</span>
+</div>
+<div class="mt-4">
+<span class="font-display-stat text-display-stat text-primary-fixed drop-shadow-[0_0_15px_rgba(195,244,0,0.4)]">88%</span>
+<p class="font-body-md text-on-surface-variant mt-2">Elite trajectory. You are in the top 5% of disciplined users this week.</p>
+</div>
+</div>
+<!-- Streak Health -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">STREAK HEALTH</span>
+<span class="material-symbols-outlined text-primary-fixed">favorite</span>
+</div>
+<div class="mt-4 flex flex-col">
+<span class="font-headline-lg text-headline-lg text-primary-fixed uppercase tracking-widest italic">STRONG</span>
+<div class="w-full bg-[#1A1A1A] h-3 rounded-full mt-4 overflow-hidden">
+<div class="bg-primary-fixed h-full lime-glow" style="width: 92%"></div>
+</div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-3 text-right">92/100 VITALITY</p>
+</div>
+</div>
+<!-- Weekly Summary -->
+<div class="glass-panel p-6 rounded-xl flex flex-col justify-between hover:bg-surface-container-high transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">WEEKLY SUMMARY</span>
+<span class="material-symbols-outlined text-on-surface-variant">event_repeat</span>
+</div>
+<div class="mt-4 space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-on-surface font-body-md">Water Total</span>
+<span class="text-primary-fixed font-bold font-body-md">28.5 GAL</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface font-body-md">Reading</span>
+<span class="text-primary-fixed font-bold font-body-md">112 PAGES</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface font-body-md">Workouts</span>
+<span class="text-primary-fixed font-bold font-body-md">14 SESSIONS</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Charts -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-grid-gutter">
+<!-- Weight Trend (Large) -->
+<div class="glass-panel p-6 rounded-xl lg:col-span-8 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Weight Trend</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">-4.2 lbs this month</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-surface-container-highest rounded text-label-caps font-label-caps">1W</button>
+<button class="px-3 py-1 bg-primary-fixed text-on-primary-fixed rounded text-label-caps font-label-caps">1M</button>
+</div>
+</div>
+<div class="chart-container flex items-end justify-between px-2 gap-1 pb-4">
+<!-- Simple SVG Line Chart representation -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 400 100">
+<path d="M0,80 L50,75 L100,82 L150,65 L200,68 L250,55 L300,58 L350,45 L400,42" fill="none" stroke="#c3f400" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+<circle cx="0" cy="80" fill="#c3f400" r="4"></circle>
+<circle cx="400" cy="42" fill="#c3f400" r="4"></circle>
+</svg>
+<div class="absolute inset-0 flex justify-between items-end pointer-events-none opacity-20 border-b border-white/20"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] font-label-caps text-on-surface-variant">
+<span>OCT 01</span>
+<span>OCT 08</span>
+<span>OCT 15</span>
+<span>OCT 22</span>
+<span>OCT 29</span>
+</div>
+</div>
+<!-- Water Intake (Medium) -->
+<div class="glass-panel p-6 rounded-xl lg:col-span-4 flex flex-col">
+<div class="mb-6">
+<h3 class="font-headline-md text-headline-md text-primary">Water Intake</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Daily Consistency</p>
+</div>
+<div class="flex-1 flex items-end justify-between gap-2 px-2">
+<div class="w-full bg-primary-fixed/20 rounded-t h-[60%] hover:bg-primary-fixed transition-colors"></div>
+<div class="w-full bg-primary-fixed/20 rounded-t h-[85%] hover:bg-primary-fixed transition-colors"></div>
+<div class="w-full bg-primary-fixed rounded-t h-[100%] lime-glow"></div>
+<div class="w-full bg-primary-fixed/20 rounded-t h-[90%] hover:bg-primary-fixed transition-colors"></div>
+<div class="w-full bg-primary-fixed/20 rounded-t h-[75%] hover:bg-primary-fixed transition-colors"></div>
+<div class="w-full bg-primary-fixed/20 rounded-t h-[95%] hover:bg-primary-fixed transition-colors"></div>
+<div class="w-full bg-primary-fixed/20 rounded-t h-[80%] hover:bg-primary-fixed transition-colors"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] font-label-caps text-on-surface-variant px-1">
+<span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+</div>
+</div>
+<!-- Reading Consistency (Large Width) -->
+<div class="glass-panel p-6 rounded-xl lg:col-span-12 flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">Reading Consistency</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">Pages read per day</p>
+</div>
+<div class="text-right">
+<span class="text-primary-fixed font-bold text-headline-md">112</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant ml-1">TOTAL PAGES</span>
+</div>
+</div>
+<div class="grid grid-cols-7 md:grid-cols-14 lg:grid-cols-21 gap-2">
+<!-- Mock Heatmap blocks -->
+<div class="aspect-square bg-primary-fixed rounded-sm lime-glow"></div>
+<div class="aspect-square bg-[#334400] rounded-sm"></div>
+<div class="aspect-square bg-[#668800] rounded-sm"></div>
+<div class="aspect-square bg-[#99BB00] rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm lime-glow"></div>
+<div class="aspect-square bg-[#1A1A1A] rounded-sm"></div>
+<div class="aspect-square bg-[#1A1A1A] rounded-sm"></div>
+<div class="aspect-square bg-[#668800] rounded-sm"></div>
+<div class="aspect-square bg-[#99BB00] rounded-sm"></div>
+<div class="aspect-square bg-[#334400] rounded-sm"></div>
+<div class="aspect-square bg-[#1A1A1A] rounded-sm"></div>
+<div class="aspect-square bg-[#99BB00] rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm lime-glow"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm lime-glow"></div>
+<div class="aspect-square bg-[#334400] rounded-sm"></div>
+<div class="aspect-square bg-[#1A1A1A] rounded-sm"></div>
+<div class="aspect-square bg-[#668800] rounded-sm"></div>
+<div class="aspect-square bg-primary-fixed rounded-sm lime-glow"></div>
+<div class="aspect-square bg-[#334400] rounded-sm"></div>
+<div class="aspect-square bg-[#1A1A1A] rounded-sm"></div>
+<div class="aspect-square bg-[#1A1A1A] rounded-sm"></div>
+</div>
+<div class="flex items-center justify-end gap-2 mt-4">
+<span class="text-[10px] font-label-caps text-on-surface-variant uppercase">Less</span>
+<div class="flex gap-1">
+<div class="w-3 h-3 bg-[#1A1A1A] rounded-sm"></div>
+<div class="w-3 h-3 bg-[#334400] rounded-sm"></div>
+<div class="w-3 h-3 bg-[#668800] rounded-sm"></div>
+<div class="w-3 h-3 bg-[#99BB00] rounded-sm"></div>
+<div class="w-3 h-3 bg-primary-fixed rounded-sm"></div>
+</div>
+<span class="text-[10px] font-label-caps text-on-surface-variant uppercase">More</span>
+</div>
+</div>
+</section>
+<!-- Discipline History Card -->
+<section class="glass-panel p-6 rounded-xl border-primary-fixed/20">
+<h3 class="font-headline-md text-headline-md text-primary mb-4">Milestone History</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-3 bg-white/5 rounded-lg border border-white/5">
+<div class="w-12 h-12 bg-primary-fixed rounded-lg flex items-center justify-center text-on-primary-fixed">
+<span class="material-symbols-outlined">emoji_events</span>
+</div>
+<div>
+<p class="font-body-md font-bold text-primary">Day 30 Hard Reset</p>
+<p class="text-[12px] text-on-surface-variant font-label-caps uppercase">Completed Oct 14, 2023</p>
+</div>
+<span class="ml-auto text-primary-fixed font-display-stat text-xl italic">+500 XP</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-white/5 rounded-lg border border-white/5">
+<div class="w-12 h-12 bg-[#2C2C2C] rounded-lg flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<div>
+<p class="font-body-md font-bold text-on-surface-variant">Final Push Milestone</p>
+<p class="text-[12px] text-on-surface-variant font-label-caps uppercase">Locked - Reach Day 50</p>
+</div>
+<span class="ml-auto text-on-surface-variant/40 font-display-stat text-xl italic">+1000 XP</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-t border-white/10 pb-safe-area-bottom">
+<div class="flex justify-around items-center w-full px-2 pt-2">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed active:scale-90 transition-all py-1" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</a>
+<!-- Calendar -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed active:scale-90 transition-all py-1" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</a>
+<!-- Progress (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-xl px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">query_stats</span>
+<span class="font-label-caps text-label-caps mt-1">Progress</span>
+</a>
+<!-- Friends -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed active:scale-90 transition-all py-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps mt-1">Friends</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed active:scale-90 transition-all py-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        // Simple interactivity for the charts (hover effect simulation)
+        document.querySelectorAll('.glass-panel').forEach(panel => {
+            panel.addEventListener('mouseenter', () => {
+                panel.style.transform = 'translateY(-4px)';
+            });
+            panel.addEventListener('mouseleave', () => {
+                panel.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Dynamic XP bar animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const bar = document.querySelector('.lime-glow');
+            if(bar) {
+                bar.style.transition = 'width 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 200);
+            }
+        });
+    </script>
+</body></html>

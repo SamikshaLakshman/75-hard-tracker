@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>75 HARD | Calendar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#474747",
+                        "surface-container": "#1e2020",
+                        "on-primary-fixed": "#161e00",
+                        "primary-fixed-dim": "#abd600",
+                        "surface-container-highest": "#333535",
+                        "on-error": "#690005",
+                        "surface-container-high": "#282a2b",
+                        "outline": "#8e9379",
+                        "on-primary-fixed-variant": "#3c4d00",
+                        "error": "#ffb4ab",
+                        "on-primary": "#283500",
+                        "surface-container-lowest": "#0c0f0f",
+                        "primary-fixed": "#c3f400",
+                        "on-tertiary": "#313030",
+                        "surface-tint": "#abd600",
+                        "on-secondary-container": "#b5b5b5",
+                        "on-background": "#e2e2e2",
+                        "inverse-on-surface": "#2f3131",
+                        "on-tertiary-container": "#656464",
+                        "error-container": "#93000a",
+                        "surface": "#121414",
+                        "on-secondary": "#303030",
+                        "tertiary": "#ffffff",
+                        "surface-bright": "#37393a",
+                        "on-secondary-fixed": "#1b1b1b",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "on-primary-container": "#556d00",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "tertiary-fixed": "#e5e2e1",
+                        "inverse-primary": "#506600",
+                        "secondary-fixed": "#e2e2e2",
+                        "secondary": "#c6c6c6",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "surface-variant": "#333535",
+                        "surface-container-low": "#1a1c1c",
+                        "primary": "#ffffff",
+                        "primary-container": "#c3f400",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-dim": "#121414",
+                        "outline-variant": "#444933",
+                        "on-error-container": "#ffdad6",
+                        "background": "#000000",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-surface": "#e2e2e2",
+                        "on-surface-variant": "#c4c9ac",
+                        "tertiary-container": "#e5e2e1",
+                        "tertiary-fixed-dim": "#c8c6c5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target": "48px",
+                        "section-margin": "2rem",
+                        "container-padding": "1rem",
+                        "gutter": "1rem",
+                        "card-gap": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "stat-label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-stat": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "stat-label": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-stat": ["48px", {"lineHeight": "48px", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e2e2e2;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(18, 20, 20, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .contribution-grid {
+            display: grid;
+            grid-template-columns: repeat(26, 1fr);
+            gap: 3px;
+        }
+        .calendar-cell {
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+        @keyframes pulse-primary {
+            0% { box-shadow: 0 0 0 0 rgba(195, 244, 0, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(195, 244, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(195, 244, 0, 0); }
+        }
+        .pulse-today {
+            animation: pulse-primary 2s infinite;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant flex justify-between items-center px-container-padding h-touch-target">
+<span class="material-symbols-outlined text-primary-fixed hover:opacity-80 transition-opacity cursor-pointer active:scale-95 transition-transform">bolt</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold tracking-tighter text-primary-fixed">75 HARD</h1>
+<span class="material-symbols-outlined text-primary-fixed hover:opacity-80 transition-opacity cursor-pointer active:scale-95 transition-transform">settings</span>
+</header>
+<main class="pt-20 px-container-padding space-y-section-margin max-w-[600px] mx-auto">
+<!-- Year Summary Section (Heatmap) -->
+<section>
+<div class="flex items-end justify-between mb-card-gap">
+<h2 class="font-headline-md text-headline-md">2024 Activity</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Current Streak: 14 Days</span>
+</div>
+<div class="bg-surface-container rounded-xl p-4 overflow-x-auto no-scrollbar border border-outline-variant/30">
+<div class="contribution-grid min-w-[500px]">
+<!-- Simulated GitHub Style Grid (Partial for 75 Days) -->
+<!-- Loop would be here, manually adding blocks of intensity -->
+<script>
+                        const gridContainer = document.querySelector('.contribution-grid');
+                        for(let i=0; i<182; i++) {
+                            const div = document.createElement('div');
+                            div.className = 'w-3 h-3 rounded-[2px]';
+                            if (i < 40) div.classList.add('bg-surface-container-highest');
+                            else if (i < 90) div.classList.add('bg-primary-fixed/20');
+                            else if (i < 110) div.classList.add('bg-primary-fixed/60');
+                            else if (i < 124) div.classList.add('bg-primary-fixed');
+                            else div.classList.add('bg-surface-container-highest');
+                            gridContainer.appendChild(div);
+                        }
+                    </script>
+</div>
+<div class="flex justify-between mt-3 font-label-caps text-[10px] text-on-surface-variant">
+<span>JAN</span><span>MAR</span><span>MAY</span><span>JUL</span><span>SEP</span><span>NOV</span>
+</div>
+</div>
+</section>
+<!-- Monthly Grid View -->
+<section>
+<div class="flex items-center justify-between mb-card-gap">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-fixed cursor-pointer">chevron_left</span>
+<h3 class="font-headline-md text-headline-md">October 2024</h3>
+<span class="material-symbols-outlined text-primary-fixed cursor-pointer">chevron_right</span>
+</div>
+<button class="bg-surface-container-high px-3 py-1 rounded-full text-label-caps font-label-caps text-primary-fixed border border-primary-fixed/20">TODAY</button>
+</div>
+<div class="bg-surface-container rounded-xl p-4 border border-outline-variant/30">
+<div class="grid grid-cols-7 gap-2 mb-4 text-center font-label-caps text-on-surface-variant">
+<span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+</div>
+<div class="grid grid-cols-7 gap-2">
+<!-- Placeholder days -->
+<div class="calendar-cell text-on-surface-variant/30 font-label-caps">30</div>
+<script>
+                        const calGrid = document.currentScript.parentElement;
+                        for(let d=1; d<=31; d++) {
+                            const cell = document.createElement('div');
+                            cell.className = 'calendar-cell font-label-caps text-label-caps cursor-pointer transition-all active:scale-90';
+                            cell.innerText = d;
+                            
+                            if(d < 14) {
+                                cell.classList.add('bg-primary-fixed', 'text-on-primary-fixed');
+                            } else if(d === 14) {
+                                cell.classList.add('bg-[#3b82f6]', 'text-white', 'pulse-today');
+                            } else if(d === 15) {
+                                cell.classList.add('bg-surface-container-highest', 'border', 'border-primary-fixed/50');
+                            } else if(d === 8) { // Simulate a failure for visual variety in past
+                                cell.classList.replace('bg-primary-fixed', 'bg-error-container');
+                                cell.classList.replace('text-on-primary-fixed', 'text-on-error-container');
+                            } else {
+                                cell.classList.add('bg-surface-container-highest', 'text-on-surface-variant');
+                            }
+                            calGrid.appendChild(cell);
+                        }
+                    </script>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex gap-4 mt-4 px-1">
+<div class="flex items-center gap-1.5 font-label-caps text-[10px] text-on-surface-variant">
+<div class="w-2.5 h-2.5 rounded-full bg-primary-fixed"></div> Complete
+                </div>
+<div class="flex items-center gap-1.5 font-label-caps text-[10px] text-on-surface-variant">
+<div class="w-2.5 h-2.5 rounded-full bg-error-container"></div> Failed
+                </div>
+<div class="flex items-center gap-1.5 font-label-caps text-[10px] text-on-surface-variant">
+<div class="w-2.5 h-2.5 rounded-full bg-[#3b82f6]"></div> Today
+                </div>
+</div>
+</section>
+<!-- Past Attempts -->
+<section>
+<h2 class="font-headline-md text-headline-md mb-card-gap">Past Attempts</h2>
+<div class="space-y-card-gap">
+<!-- Attempt 1 -->
+<div class="bg-surface-container p-4 rounded-xl border border-outline-variant/30 flex justify-between items-center">
+<div>
+<p class="font-label-caps text-label-caps text-primary-fixed mb-1">Attempt #3 — Success</p>
+<p class="text-on-surface-variant text-sm">Jan 01, 2024 - Mar 15, 2024</p>
+</div>
+<div class="text-right">
+<p class="font-display-stat text-[24px] leading-none text-primary-fixed">75/75</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant">DAYS</p>
+</div>
+</div>
+<!-- Attempt 2 -->
+<div class="bg-surface-container p-4 rounded-xl border border-outline-variant/30 flex justify-between items-center opacity-70">
+<div>
+<p class="font-label-caps text-label-caps text-error mb-1">Attempt #2 — Failed</p>
+<p class="text-on-surface-variant text-sm">Nov 12, 2023 - Dec 04, 2023</p>
+</div>
+<div class="text-right">
+<p class="font-display-stat text-[24px] leading-none text-error">22/75</p>
+<p class="font-label-caps text-[10px] text-on-surface-variant">DAYS</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Sheet Indicator -->
+<div class="fixed bottom-20 left-0 right-0 h-12 flex justify-center items-center z-40 bg-gradient-to-t from-black to-transparent cursor-pointer" id="bottom-sheet-trigger">
+<div class="w-12 h-1.5 bg-surface-container-highest rounded-full"></div>
+</div>
+<!-- Bottom Sheet Content (Hidden by default, shown via JS) -->
+<div class="fixed inset-x-0 bottom-0 z-[60] glass-panel rounded-t-[24px] border-t border-outline-variant/30 translate-y-full transition-transform duration-300 ease-out" id="bottom-sheet">
+<div class="w-full flex justify-center py-4">
+<div class="w-12 h-1.5 bg-surface-container-highest rounded-full"></div>
+</div>
+<div class="px-container-padding pb-safe-area-inset-bottom">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h4 class="font-headline-md text-headline-md">Day 14 Details</h4>
+<p class="text-on-surface-variant">Monday, October 14, 2024</p>
+</div>
+<div class="bg-primary-fixed/20 text-primary-fixed px-3 py-1 rounded-full text-label-caps font-label-caps">ACTIVE</div>
+</div>
+<div class="space-y-4 mb-8">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed">water_drop</span>
+<span class="font-body-md">1 Gallon Water</span>
+</div>
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-fixed">fitness_center</span>
+<span class="font-body-md">Outdoor Workout</span>
+</div>
+<span class="material-symbols-outlined text-primary-fixed" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg opacity-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">menu_book</span>
+<span class="font-body-md">Read 10 Pages</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">radio_button_unchecked</span>
+</div>
+</div>
+<button class="w-full bg-primary-fixed text-on-primary-fixed py-4 rounded-xl font-bold font-label-caps mb-8" id="close-sheet">DISMISS</button>
+</div>
+</div>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-t border-outline-variant">
+<div class="flex justify-around items-center h-20 px-container-padding max-w-[600px] mx-auto">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-caps text-label-caps mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary-fixed font-bold hover:text-primary-fixed-dim transition-colors cursor-pointer scale-110">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="font-label-caps text-label-caps mt-1">Calendar</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined">donut_large</span>
+<span class="font-label-caps text-label-caps mt-1">Progress</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps mt-1">Friends</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary-fixed-dim transition-colors cursor-pointer">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-caps text-label-caps mt-1">Profile</span>
+</div>
+</div>
+</nav>
+<script>
+        const sheet = document.getElementById('bottom-sheet');
+        const trigger = document.getElementById('bottom-sheet-trigger');
+        const closeBtn = document.getElementById('close-sheet');
+        const backdrop = document.createElement('div');
+        
+        backdrop.className = 'fixed inset-0 bg-black/60 z-[55] hidden opacity-0 transition-opacity duration-300';
+        document.body.appendChild(backdrop);
+
+        function openSheet() {
+            sheet.classList.remove('translate-y-full');
+            backdrop.classList.remove('hidden');
+            setTimeout(() => backdrop.classList.add('opacity-100'), 10);
+        }
+
+        function closeSheet() {
+            sheet.classList.add('translate-y-full');
+            backdrop.classList.remove('opacity-100');
+            setTimeout(() => backdrop.classList.add('hidden'), 300);
+        }
+
+        trigger.addEventListener('click', openSheet);
+        closeBtn.addEventListener('click', closeSheet);
+        backdrop.addEventListener('click', closeSheet);
+
+        // Calendar cell click handling
+        document.querySelectorAll('.calendar-cell').forEach(cell => {
+            cell.addEventListener('click', openSheet);
+        });
+    </script>
+</body></html>
