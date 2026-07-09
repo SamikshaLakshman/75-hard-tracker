@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import type { UserProfile } from "@/types";
-import Image from "next/image";
 
 const NAV_ITEMS = [
   { href: "/dashboard", icon: "home", label: "HOME" },
@@ -21,12 +20,10 @@ export default function Sidebar({ user }: { user: UserProfile }) {
 
   return (
     <aside className="hidden lg:flex flex-col w-60 glass-card border-r border-border py-6 px-4 gap-6">
-    <div className="flex items-center gap-3 px-3 mb-2">
-      <Image src="/forge75-icon.svg" alt="Forge75" width={28} height={28}/>
-      <span className="text-headline-md font-bold tracking-tighter text-accent">
-        75 HARD
-      </span>
-    </div>
+      <div className="flex items-center gap-3 px-3 mb-2">
+        <img src="/logo.svg" alt="Forge75" className="w-8 h-8 rounded-lg" />
+        <span className="text-headline-md font-bold tracking-tighter text-accent">FORGE75</span>
+      </div>
 
       <nav className="flex flex-col gap-1.5 flex-1">
         {NAV_ITEMS.map((item) => {

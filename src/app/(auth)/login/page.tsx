@@ -35,10 +35,8 @@ export default function LoginPage() {
 
       <div className="relative z-10 w-full max-w-sm space-y-8">
         <div className="text-center space-y-4">
-          <div className="mx-auto w-16 h-16 rounded-2xl bg-surface border border-accent/30 flex items-center justify-center">
-            <span className="material-symbols-outlined text-4xl text-accent" style={{ fontVariationSettings: "'FILL' 1" }}>fitness_center</span>
-          </div>
-          <h1 className="text-display-stat text-accent tracking-tighter italic text-glow">75 HARD</h1>
+          <img src="/logo.svg" alt="Forge75" className="mx-auto w-16 h-16 rounded-2xl" />
+          <h1 className="text-headline-lg text-accent tracking-tighter">FORGE75</h1>
           <p className="text-label-caps tracking-[0.3em] text-muted-foreground uppercase">Discipline Over Motivation</p>
         </div>
 

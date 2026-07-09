@@ -34,6 +34,7 @@ export default function SignupPage() {
 
       <div className="relative z-10 w-full max-w-sm space-y-8">
         <div className="text-center space-y-4">
+          <img src="/logo.svg" alt="Forge75" className="mx-auto w-14 h-14 rounded-2xl" />
           <h1 className="text-headline-lg text-accent tracking-tighter">Start Your Journey</h1>
           <p className="text-stat-label text-muted-foreground">75 days. Zero excuses. Total transformation.</p>
         </div>
