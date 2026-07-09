@@ -27,6 +27,7 @@ A full-stack Progressive Web App for completing the 75 Hard Challenge — built 
 - [Screenshots](#screenshots)
 - [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
+- [Demo Accounts & Resetting Data](#demo-accounts--resetting-data)
 - [Environment Variables](#environment-variables)
 - [Database Schema Overview](#database-schema-overview)
 - [Deployment](#deployment)
@@ -110,7 +111,9 @@ forge75/
 │
 ├── prisma/
 │   ├── schema.prisma              # Database models (User, Challenge, DailyLog, Achievement, etc.)
-│   └── seed.ts                    # Demo data — users, friends, achievements, 30 days of logs
+│   ├── seed.ts                    # Demo data — users, friends, achievements, 30 days of logs
+│   ├── reset-except-demo.ts       # Keeps demo accounts, deletes everything/everyone else
+│   └── reset-all.ts               # Full wipe — clears all users and their data
 │
 ├── public/
 │   ├── logo.svg                   # App icon — flame mark (favicon, manifest, header)
@@ -190,6 +193,56 @@ npm run dev                   # http://localhost:3000
 ```
 
 **Demo login:** `demo@75hard.app` / `password123`
+
+---
+
+## Demo Accounts & Resetting Data
+
+The seed script (`prisma/seed.ts`) creates a set of demo accounts pre-loaded with realistic data — useful for presentations, screenshots, or testing without manually filling in 75 days of logs. All demo accounts share the password `password123`.
+
+| Email | Username | What's included |
+|---|---|---|
+| `demo@75hard.app` | `demo` | Main showcase account — 30 days of logged data, 10 unlocked achievements, an active streak, and a past failed attempt |
+| `demotest@75hard.app` | `demotest` | Pre-added friend, used to demo the friend request/accept flow |
+| `sarah@75hard.app` | `sarahfitness` | Friend with a higher XP/level, for leaderboard variety |
+| `mike@75hard.app` | `mikegrind` | Friend with a lower XP/level |
+| `priya@75hard.app` | `priyastrong` | Friend with the highest XP/level |
+
+### Re-seeding demo data
+
+```bash
+npx tsx prisma/seed.ts
+```
+
+Safe to run multiple times — it uses `upsert`, so it won't create duplicates.
+
+### Cleaning up test accounts before going live
+
+While building, you'll likely create your own personal test accounts by signing up through the app. Before a real launch or presentation, remove everything except the demo accounts with:
+
+```bash
+npx tsx prisma/reset-except-demo.ts
+```
+
+This deletes every account **except** the five demo emails above, along with all of their challenges, daily logs, friendships, and achievements (cascading deletes handle cleanup automatically). The demo accounts and their data are left untouched.
+
+To run this against your **live/hosted** database instead of local, set `DATABASE_URL` to your hosted connection string first:
+
+```bash
+# PowerShell example
+$env:DATABASE_URL="your-hosted-mysql-connection-string"
+npx tsx prisma/reset-except-demo.ts
+```
+
+### Wiping everything (full reset)
+
+To start completely fresh — no demo accounts either — use:
+
+```bash
+npx tsx prisma/reset-all.ts
+```
+
+This clears all users, challenges, daily logs, friendships, and achievements. Achievement *definitions* (the catalog itself) are preserved since they're app configuration, not user data. Run `npx tsx prisma/seed.ts` afterward if you want the demo accounts back.
 
 ---
 
