@@ -46,3 +46,17 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.json({ ok: true, user: found });
 }
+
+export async function DELETE(req: NextRequest) {
+  const session = await getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const { friendId } = await req.json();
+  if (!friendId) return NextResponse.json({ error: "friendId required" }, { status: 400 });
+
+  await prisma.friendship.deleteMany({
+    where: { userId: session.userId, friendId },
+  });
+
+  return NextResponse.json({ ok: true });
+}

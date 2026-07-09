@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import DashboardClient from "./dashboard-client";
+import StartChallenge from "./start-challenge";
 
 export default async function DashboardPage() {
   const session = await getSession();
@@ -13,17 +14,14 @@ export default async function DashboardPage() {
   });
   if (!user) redirect("/login");
 
-  let challenge = await prisma.challenge.findFirst({
+  const challenge = await prisma.challenge.findFirst({
     where: { userId: session.userId, status: "ACTIVE" },
     include: { dailyLogs: { orderBy: { date: "desc" } } },
   });
 
-  // Auto-create challenge if none exists
+  // No active challenge — show the explicit Start screen instead of auto-creating one
   if (!challenge) {
-    challenge = await prisma.challenge.create({
-      data: { userId: session.userId, startDate: new Date() },
-      include: { dailyLogs: true },
-    });
+    return <StartChallenge displayName={user.displayName || user.username || "Athlete"} />;
   }
 
   const today = new Date();

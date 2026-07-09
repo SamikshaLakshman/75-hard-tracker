@@ -19,6 +19,7 @@ export default function FriendsPage() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
+  const [removingId, setRemovingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/friends")
@@ -45,6 +46,19 @@ export default function FriendsPage() {
     setSuccess(`${data.user.displayName || data.user.username} added!`);
     setSearch("");
     setFriends((prev) => [...prev, data.user]);
+  }
+
+  async function handleRemove(friendId: string) {
+    setRemovingId(friendId);
+    const res = await fetch("/api/friends", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ friendId }),
+    });
+    if (res.ok) {
+      setFriends((prev) => prev.filter((f) => f.id !== friendId));
+    }
+    setRemovingId(null);
   }
 
   const sorted = [...friends].sort((a, b) => b.xp - a.xp);
@@ -81,7 +95,7 @@ export default function FriendsPage() {
       ) : sorted.length > 0 ? (
         <div className="space-y-3">
           {sorted.map((friend, i) => (
-            <div key={friend.id} className="glass-card rounded-xl p-4 flex items-center justify-between">
+            <div key={friend.id} className="glass-card rounded-xl p-4 flex items-center justify-between group">
               <div className="flex items-center gap-4">
                 <div className={cn(
                   "w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold",
@@ -97,9 +111,21 @@ export default function FriendsPage() {
                   <p className="text-label-caps text-muted-foreground">{friend.title.toUpperCase()} · LVL {friend.level}</p>
                 </div>
               </div>
-              <div className="text-right">
-                <p className="text-lg font-extrabold text-accent">{friend.xp.toLocaleString()}</p>
-                <p className="text-label-caps text-muted-foreground">XP</p>
+              <div className="flex items-center gap-3">
+                <div className="text-right">
+                  <p className="text-lg font-extrabold text-accent">{friend.xp.toLocaleString()}</p>
+                  <p className="text-label-caps text-muted-foreground">XP</p>
+                </div>
+                <button
+                  onClick={() => handleRemove(friend.id)}
+                  disabled={removingId === friend.id}
+                  title="Remove friend"
+                  className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-danger hover:bg-danger/10 transition-all disabled:opacity-50"
+                >
+                  <span className="material-symbols-outlined text-lg">
+                    {removingId === friend.id ? "hourglass_empty" : "close"}
+                  </span>
+                </button>
               </div>
             </div>
           ))}

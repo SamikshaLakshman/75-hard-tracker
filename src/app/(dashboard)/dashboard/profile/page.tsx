@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { xpForNextLevel, THEMES } from "@/lib/utils";
+import ResetChallengeButton from "../reset-challenge-button";
 
 export default async function ProfilePage() {
   const session = await getSession();
@@ -126,6 +127,11 @@ export default async function ProfilePage() {
           </div>
         </section>
       )}
+
+      <section className="glass-card rounded-xl p-5 border border-danger/20">
+        <h3 className="text-label-caps text-danger mb-4">DANGER ZONE</h3>
+        <ResetChallengeButton hasActiveChallenge={!!activeChallenge} />
+      </section>
     </div>
   );
 }
