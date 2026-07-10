@@ -91,6 +91,7 @@ export const BONUS_CHALLENGES = [
   { id: 6, icon: "🌅", title: "Sunrise Witness", description: "Wake up and watch the sunrise", xp: 45, difficulty: "HARD" },
   { id: 7, icon: "🧘", title: "5 Min Meditation", description: "Sit in silence for 5 minutes before bed", xp: 25, difficulty: "EASY" },
   { id: 8, icon: "📞", title: "Accountability Call", description: "Call someone who motivates you", xp: 35, difficulty: "MEDIUM" },
+  { id: 9, icon: "🍱", title: "Meal Prep Tomorrow", description: "Prep your meals for tomorrow tonight so nothing derails your diet", xp: 35, difficulty: "MEDIUM" },
 ] as const;
 
 export const TITLE_PROGRESSION = [
