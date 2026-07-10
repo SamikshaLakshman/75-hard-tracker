@@ -16,7 +16,7 @@ export default async function CalendarPage() {
     date: l.date.toISOString().split("T")[0],
     isComplete: l.isComplete,
     completedCount: [l.workout1, l.workout2, l.outdoorWorkout, l.readingDone].filter(Boolean).length +
-      [l.steps, l.waterOz, l.proteinG, l.fiberG, l.weightLbs, l.sleepHours].filter((v) => v && v > 0).length,
+      [l.steps, l.waterLiters, l.proteinG, l.fiberG, l.weightLbs, l.sleepHours].filter((v) => v && v > 0).length,
   })) || [];
 
   return <CalendarClient logs={logs} startDate={challenge?.startDate?.toISOString() || new Date().toISOString()} />;

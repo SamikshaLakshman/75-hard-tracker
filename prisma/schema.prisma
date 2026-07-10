@@ -77,7 +77,7 @@ model DailyLog {
   workout2       Boolean  @default(false)
   outdoorWorkout Boolean  @default(false)
   steps          Int?
-  waterOz        Float?
+  waterLiters    Float?
   proteinG       Float?
   fiberG         Float?
   weightLbs      Float?

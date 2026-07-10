@@ -15,7 +15,7 @@ export default async function ProgressPage() {
   const logs = challenge?.dailyLogs.map((l) => ({
     date: l.date.toISOString().split("T")[0],
     dayNumber: l.dayNumber,
-    waterOz: l.waterOz,
+    waterLiters: l.waterLiters,
     weightLbs: l.weightLbs,
     sleepHours: l.sleepHours,
     steps: l.steps,

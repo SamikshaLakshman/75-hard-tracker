@@ -1,29 +1,58 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import ChecklistItem from "@/components/checklist/checklist-item";
 import ProgressRing from "@/components/checklist/progress-ring";
 import { DAILY_TASKS, getTodayQuote } from "@/lib/utils";
-import type { DailyLogData, UserProfile } from "@/types";
+import type { DailyLogData, DailyLogWithDate, UserProfile } from "@/types";
 
 interface Props {
   user: UserProfile;
   challengeId: string;
-  dayNumber: number;
+  challengeStartDate: string;
   currentStreak: number;
-  todayLog: DailyLogData | null;
+  logs: DailyLogWithDate[];
 }
 
 const EMPTY_LOG: DailyLogData = {
   workout1: false, workout2: false, outdoorWorkout: false,
-  steps: null, waterOz: null, proteinG: null, fiberG: null,
+  steps: null, waterLiters: null, proteinG: null, fiberG: null,
   weightLbs: null, readingDone: false, sleepHours: null,
   mood: null, notes: null,
 };
 
-export default function DashboardClient({ user, challengeId, dayNumber, currentStreak, todayLog }: Props) {
+// Format a Date as YYYY-MM-DD using the BROWSER's local timezone (not UTC),
+// so it lines up with how dates are compared and saved elsewhere in this component.
+function toLocalDateString(d: Date): string {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+export default function DashboardClient({ user, challengeId, challengeStartDate, currentStreak, logs }: Props) {
+  // "Today" and "day number" are computed here, in the browser, using the browser's own clock.
+  // This must match exactly how handleSave() computes them below — that's what keeps a
+  // marked-done task from appearing to reset before the actual local day changes.
+  const now = useMemo(() => new Date(), []);
+  const todayStr = useMemo(() => toLocalDateString(now), [now]);
+
+  const startDate = useMemo(() => {
+    const d = new Date(challengeStartDate);
+    return toLocalDateString(d);
+  }, [challengeStartDate]);
+
+  const dayNumber = useMemo(() => {
+    const start = new Date(startDate + "T00:00:00");
+    const today = new Date(todayStr + "T00:00:00");
+    return Math.floor((today.getTime() - start.getTime()) / 86400000) + 1;
+  }, [startDate, todayStr]);
+
+  const todayLog = useMemo(() => logs.find((l) => l.date === todayStr), [logs, todayStr]);
+
   const [log, setLog] = useState<DailyLogData>(todayLog || EMPTY_LOG);
   const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
   const quote = getTodayQuote();
 
   const completedCount = DAILY_TASKS.filter((t) => {
@@ -34,24 +63,22 @@ export default function DashboardClient({ user, challengeId, dayNumber, currentS
 
   const handleChange = useCallback((key: string, value: string | number | boolean | null) => {
     setLog((prev) => ({ ...prev, [key]: value }));
+    setSaved(false);
   }, []);
 
   async function handleSave() {
     setSaving(true);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
     await fetch("/api/daily-log", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ challengeId, date: today.toISOString(), dayNumber, ...log }),
+      body: JSON.stringify({ challengeId, date: `${todayStr}T00:00:00.000Z`, dayNumber, ...log }),
     });
     setSaving(false);
+    setSaved(true);
   }
 
   return (
     <div className="space-y-6 md:space-y-8">
-      {/* Profile + XP bar — mobile only, desktop shows in sidebar */}
       <section className="lg:hidden flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-full border-2 border-accent flex items-center justify-center text-accent font-bold">
@@ -68,7 +95,6 @@ export default function DashboardClient({ user, challengeId, dayNumber, currentS
         </div>
       </section>
 
-      {/* Streak + Quote — responsive grid */}
       <section className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="glass-card rounded-xl p-6 flex items-center justify-between relative overflow-hidden">
           <div className="z-10">
@@ -92,15 +118,13 @@ export default function DashboardClient({ user, challengeId, dayNumber, currentS
         </div>
       </section>
 
-      {/* Progress Ring */}
       <section className="flex justify-center py-2">
         <ProgressRing percentage={percentage} size={220} strokeWidth={10} />
       </section>
 
-      {/* Checklist */}
       <section className="space-y-3">
         <div className="flex items-center justify-between px-1">
-          <h3 className="text-label-caps text-muted-foreground">DAILY PROTOCOL</h3>
+          <h3 className="text-label-caps text-muted-foreground">DAILY PROTOCOL — DAY {dayNumber}</h3>
           <span className="text-label-caps text-accent">{completedCount}/{DAILY_TASKS.length} COMPLETE</span>
         </div>
 
@@ -112,6 +136,7 @@ export default function DashboardClient({ user, challengeId, dayNumber, currentS
               label={task.label}
               subtitle={task.subtitle}
               type={task.type}
+              step={"step" in task ? (task as { step?: number }).step : undefined}
               checked={
                 log[task.key as keyof DailyLogData] === true ||
                 (typeof log[task.key as keyof DailyLogData] === "number" && (log[task.key as keyof DailyLogData] as number) > 0)
@@ -123,11 +148,10 @@ export default function DashboardClient({ user, challengeId, dayNumber, currentS
         </div>
       </section>
 
-      {/* Save Button */}
       <section className="pb-4">
         <button onClick={handleSave} disabled={saving}
           className="w-full bg-accent text-black font-bold py-4 rounded-xl text-label-caps tracking-wider hover:brightness-110 active:scale-[0.98] transition-all accent-glow disabled:opacity-50">
-          {saving ? "SAVING..." : percentage === 100 ? "DAY COMPLETE — SAVE" : "SAVE PROGRESS"}
+          {saving ? "SAVING..." : saved ? "✓ SAVED" : percentage === 100 ? "DAY COMPLETE — SAVE" : "SAVE PROGRESS"}
         </button>
       </section>
     </div>

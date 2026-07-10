@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
   const { challengeId, date, dayNumber, ...data } = body;
 
   const booleanTasks = [data.workout1, data.workout2, data.readingDone];
-  const numberTasks = [data.steps, data.waterOz, data.proteinG, data.fiberG, data.weightLbs, data.sleepHours];
+  const numberTasks = [data.steps, data.waterLiters, data.proteinG, data.fiberG, data.weightLbs, data.sleepHours];
   const isComplete = booleanTasks.every(Boolean) && numberTasks.every((v: number | null) => v !== null && v > 0);
 
   let xpEarned = 0;

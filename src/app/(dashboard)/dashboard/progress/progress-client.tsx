@@ -3,7 +3,7 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts";
 
 interface LogEntry {
-  date: string; dayNumber: number; waterOz: number | null;
+  date: string; dayNumber: number; waterLiters: number | null;
   weightLbs: number | null; sleepHours: number | null;
   steps: number | null; isComplete: boolean; mood: number | null;
 }
@@ -11,13 +11,13 @@ interface LogEntry {
 export default function ProgressClient({ logs }: { logs: LogEntry[] }) {
   const completedDays = logs.filter((l) => l.isComplete).length;
   const totalDays = logs.length;
-  const avgWater = logs.filter((l) => l.waterOz).reduce((s, l) => s + (l.waterOz || 0), 0) / (logs.filter((l) => l.waterOz).length || 1);
+  const avgWater = logs.filter((l) => l.waterLiters).reduce((s, l) => s + (l.waterLiters || 0), 0) / (logs.filter((l) => l.waterLiters).length || 1);
   const avgSleep = logs.filter((l) => l.sleepHours).reduce((s, l) => s + (l.sleepHours || 0), 0) / (logs.filter((l) => l.sleepHours).length || 1);
 
   const chartData = logs.map((l) => ({
     day: `D${l.dayNumber}`,
     weight: l.weightLbs,
-    water: l.waterOz,
+    water: l.waterLiters,
     sleep: l.sleepHours,
     steps: l.steps,
     mood: l.mood,
@@ -26,7 +26,7 @@ export default function ProgressClient({ logs }: { logs: LogEntry[] }) {
   const stats = [
     { label: "DAYS COMPLETED", value: completedDays, icon: "check_circle" },
     { label: "COMPLETION RATE", value: totalDays ? `${Math.round((completedDays / totalDays) * 100)}%` : "0%", icon: "percent" },
-    { label: "AVG WATER (OZ)", value: avgWater.toFixed(0), icon: "water_drop" },
+    { label: "AVG WATER (L)", value: avgWater.toFixed(1), icon: "water_drop" },
     { label: "AVG SLEEP (HRS)", value: avgSleep.toFixed(1), icon: "bedtime" },
   ];
 
@@ -67,7 +67,7 @@ export default function ProgressClient({ logs }: { logs: LogEntry[] }) {
       {chartData.some((d) => d.water || d.sleep) && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           <section className="glass-card rounded-xl p-5">
-            <h3 className="text-label-caps text-muted-foreground mb-4">WATER INTAKE</h3>
+            <h3 className="text-label-caps text-muted-foreground mb-4">WATER INTAKE (L)</h3>
             <div className="h-44">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData}>

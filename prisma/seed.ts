@@ -112,7 +112,7 @@ async function main() {
     data: { userId: demo.id, startDate: challengeStart, status: "ACTIVE", currentDay: 30, maxStreak: 30 },
   });
 
-  const waterTargets = [120,128,115,128,128,100,128,128,128,110,128,128,128,128,95,128,128,128,128,128,108,128,128,128,128,128,128,128,128,128];
+  const waterTargets = [3.5,3.8,3.4,3.8,3.8,3.0,3.8,3.8,3.8,3.3,3.8,3.8,3.8,3.8,2.8,3.8,3.8,3.8,3.8,3.8,3.2,3.8,3.8,3.8,3.8,3.8,3.8,3.8,3.8,3.8];
   const weights =     [185,184.5,184,183.8,183.5,183.2,183,182.8,182.5,182.3,182,181.8,181.5,181.3,181,180.8,180.5,180.3,180,179.8,179.5,179.3,179,178.8,178.5,178.3,178,177.8,177.5,177.2];
   const sleeps =      [7.5,8,6.5,7,8,7.5,8,7,6,8,7.5,8,7,7.5,8,6.5,7,8,7.5,7,8,7.5,8,7,7.5,8,7,8,7.5,8];
   const moods =       [4,5,3,4,5,4,5,4,3,4,5,5,4,4,3,4,5,4,5,4,5,4,5,5,4,5,4,5,5,5];
@@ -127,7 +127,7 @@ async function main() {
       data: {
         challengeId: activeChallenge.id, date, dayNumber: i + 1,
         workout1: true, workout2: !incomplete, outdoorWorkout: !incomplete,
-        steps: steps[i], waterOz: waterTargets[i], proteinG: incomplete ? 80 : 150,
+        steps: steps[i], waterLiters: waterTargets[i], proteinG: incomplete ? 80 : 150,
         fiberG: incomplete ? 10 : 30, weightLbs: weights[i],
         readingDone: !incomplete, sleepHours: sleeps[i], mood: moods[i],
         notes: i % 7 === 0 ? "Feeling strong. Getting into the groove." : i % 5 === 0 ? "Tough day but pushed through." : null,

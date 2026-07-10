@@ -10,9 +10,10 @@ interface ChecklistItemProps {
   checked: boolean;
   value: string | number | boolean | null;
   onChange: (value: string | number | boolean | null) => void;
+  step?: number;
 }
 
-export default function ChecklistItem({ icon, label, subtitle, type, checked, value, onChange }: ChecklistItemProps) {
+export default function ChecklistItem({ icon, label, subtitle, type, checked, value, onChange, step }: ChecklistItemProps) {
   if (type === "boolean") {
     return (
       <div className={cn("glass-card rounded-xl p-4 flex items-center justify-between transition-all cursor-pointer", checked && "active-glow")}
@@ -92,7 +93,7 @@ export default function ChecklistItem({ icon, label, subtitle, type, checked, va
           <p className="text-stat-label text-muted-foreground">{subtitle}</p>
         </div>
       </div>
-      <input type="number" value={value?.toString() || ""} onChange={(e) => onChange(e.target.value ? Number(e.target.value) : null)}
+      <input type="number" step={step ?? 1} value={value?.toString() || ""} onChange={(e) => onChange(e.target.value ? Number(e.target.value) : null)}
         className="w-24 bg-surface-container-high border border-border rounded-lg px-3 py-2 text-right text-foreground font-bold focus:border-accent focus:outline-none"
         placeholder="0" />
     </div>

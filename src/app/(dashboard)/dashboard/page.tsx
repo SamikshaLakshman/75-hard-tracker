@@ -24,38 +24,36 @@ export default async function DashboardPage() {
     return <StartChallenge displayName={user.displayName || user.username || "Athlete"} />;
   }
 
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const startDate = new Date(challenge.startDate);
-  startDate.setHours(0, 0, 0, 0);
-  const dayNumber = Math.floor((today.getTime() - startDate.getTime()) / 86400000) + 1;
-
-  const todayLog = challenge.dailyLogs.find((l) => {
-    const ld = new Date(l.date);
-    ld.setHours(0, 0, 0, 0);
-    return ld.getTime() === today.getTime();
-  });
+  // IMPORTANT: we deliberately do NOT compute "today" or pick out today's log here on the
+  // server. Vercel's server clock runs in UTC, which doesn't match the user's local day —
+  // that mismatch was causing tasks to appear to reset mid-day. Instead we hand the client
+  // every logged day, and the client (browser) determines "today" using its own local clock,
+  // the same clock it uses when saving. That keeps save and display always in sync.
+  const logs = challenge.dailyLogs.map((l) => ({
+    date: l.date.toISOString().split("T")[0],
+    dayNumber: l.dayNumber,
+    isComplete: l.isComplete,
+    workout1: l.workout1,
+    workout2: l.workout2,
+    outdoorWorkout: l.outdoorWorkout,
+    steps: l.steps,
+    waterLiters: l.waterLiters,
+    proteinG: l.proteinG,
+    fiberG: l.fiberG,
+    weightLbs: l.weightLbs,
+    readingDone: l.readingDone,
+    sleepHours: l.sleepHours,
+    mood: l.mood,
+    notes: l.notes,
+  }));
 
   return (
     <DashboardClient
       user={user}
       challengeId={challenge.id}
-      dayNumber={dayNumber}
+      challengeStartDate={challenge.startDate.toISOString()}
       currentStreak={challenge.currentDay}
-      todayLog={todayLog ? {
-        workout1: todayLog.workout1,
-        workout2: todayLog.workout2,
-        outdoorWorkout: todayLog.outdoorWorkout,
-        steps: todayLog.steps,
-        waterOz: todayLog.waterOz,
-        proteinG: todayLog.proteinG,
-        fiberG: todayLog.fiberG,
-        weightLbs: todayLog.weightLbs,
-        readingDone: todayLog.readingDone,
-        sleepHours: todayLog.sleepHours,
-        mood: todayLog.mood,
-        notes: todayLog.notes,
-      } : null}
+      logs={logs}
     />
   );
 }
