@@ -4,7 +4,7 @@ import { hashPassword, verifyPassword, createToken, setSession, clearSession } f
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { action, email, password, username } = body;
+  const { action, email, password, username, identifier } = body;
 
   if (action === "signup") {
     const emailExists = await prisma.user.findUnique({ where: { email } });
@@ -27,7 +27,13 @@ export async function POST(req: NextRequest) {
   }
 
   if (action === "login") {
-    const user = await prisma.user.findUnique({ where: { email } });
+    // Accepts either email or username in the same field
+    const loginIdentifier = (identifier || email || "").trim();
+    const user = await prisma.user.findFirst({
+      where: {
+        OR: [{ email: loginIdentifier }, { username: loginIdentifier }],
+      },
+    });
     if (!user) return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
 
     const valid = await verifyPassword(password, user.password);

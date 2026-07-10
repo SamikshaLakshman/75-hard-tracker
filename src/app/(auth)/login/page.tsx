@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ export default function LoginPage() {
     const res = await fetch("/api/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "login", email, password }),
+      body: JSON.stringify({ action: "login", identifier, password }),
     });
     const data = await res.json();
     setLoading(false);
@@ -47,17 +47,22 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-label-caps text-muted-foreground block mb-2">EMAIL</label>
+              <label className="text-label-caps text-muted-foreground block mb-2">EMAIL OR USERNAME</label>
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={identifier}
+                onChange={(e) => setIdentifier(e.target.value)}
                 className="w-full bg-surface-container-high border border-border rounded-lg px-4 py-3 text-foreground focus:border-accent focus:outline-none transition-colors"
                 required
               />
             </div>
             <div>
-              <label className="text-label-caps text-muted-foreground block mb-2">PASSWORD</label>
+              <div className="flex items-center justify-between mb-2">
+                <label className="text-label-caps text-muted-foreground">PASSWORD</label>
+                <Link href="/forgot-password" className="text-label-caps text-accent hover:underline">
+                  FORGOT?
+                </Link>
+              </div>
               <input
                 type="password"
                 value={password}

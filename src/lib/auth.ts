@@ -1,6 +1,7 @@
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import bcrypt from "bcryptjs";
+import crypto from "crypto";
 
 const secret = new TextEncoder().encode(process.env.AUTH_SECRET || "dev-secret-change-me");
 
@@ -50,4 +51,9 @@ export async function setSession(token: string) {
 export async function clearSession() {
   const cookieStore = await cookies();
   cookieStore.delete("token");
+}
+
+// Used for password reset links — random, unguessable, single-use
+export function generateResetToken() {
+  return crypto.randomBytes(32).toString("hex");
 }
