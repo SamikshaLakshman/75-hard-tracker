@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getSession } from "@/lib/auth";
+import { getSession, clearSession } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import Sidebar from "@/components/layout/sidebar";
 import BottomNav from "@/components/layout/bottom-nav";
@@ -11,9 +11,15 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   const user = await prisma.user.findUnique({
     where: { id: session.userId },
-    select: { id: true, email: true, username: true, displayName: true, avatarUrl: true, xp: true, level: true, title: true },
+    select: { id: true, email: true, username: true, displayName: true, avatarUrl: true, xp: true, level: true, title: true, role: true },
   });
-  if (!user) redirect("/login");
+
+  if (!user) {
+    // Cookie references a user that no longer exists (e.g. after a database reset) — clear it
+    // so the browser stops sending a stale token that would otherwise cause a redirect loop.
+    await clearSession();
+    redirect("/login");
+  }
 
   return (
     <div className="flex h-screen bg-background">

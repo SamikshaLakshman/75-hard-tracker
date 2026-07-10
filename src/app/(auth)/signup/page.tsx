@@ -7,16 +7,18 @@ import Link from "next/link";
 export default function SignupPage() {
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "", username: "" });
+  const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setLoading(true);
     setError("");
 
-    if (form.password.length < 8) { setError("Password must be at least 8 characters"); setLoading(false); return; }
+    if (!agreed) { setError("You must agree to the Terms & Conditions to continue"); return; }
+    if (form.password.length < 8) { setError("Password must be at least 8 characters"); return; }
 
+    setLoading(true);
     const res = await fetch("/api/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -58,6 +60,23 @@ export default function SignupPage() {
               <input type="password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })}
                 className="w-full bg-surface-container-high border border-border rounded-lg px-4 py-3 text-foreground focus:border-accent focus:outline-none" required />
             </div>
+
+            <label className="flex items-start gap-2.5 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                className="mt-1 w-4 h-4 accent-accent"
+              />
+              <span className="text-xs text-muted-foreground leading-relaxed">
+                I agree to the{" "}
+                <Link href="/terms" target="_blank" className="text-accent hover:underline">
+                  Terms & Conditions
+                </Link>
+                , including the policy on account suspension for misbehavior.
+              </span>
+            </label>
+
             <button type="submit" disabled={loading}
               className="w-full bg-accent text-black font-bold py-3 rounded-xl text-label-caps tracking-wider hover:brightness-110 active:scale-95 transition-all accent-glow disabled:opacity-50">
               {loading ? "CREATING..." : "BEGIN 75 HARD"}

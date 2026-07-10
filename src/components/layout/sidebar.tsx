@@ -40,6 +40,17 @@ export default function Sidebar({ user }: { user: UserProfile }) {
             </Link>
           );
         })}
+
+        {user.role === "ADMIN" && (
+          <Link href="/admin"
+            className={cn(
+              "flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-label-caps mt-2 border border-warning/30",
+              pathname.startsWith("/admin") ? "bg-warning text-black font-bold" : "text-warning hover:bg-warning/10"
+            )}>
+            <span className="material-symbols-outlined text-xl">shield_person</span>
+            ADMIN PANEL
+          </Link>
+        )}
       </nav>
 
       <div className="glass-card p-4 rounded-xl border-accent/20">

@@ -30,4 +30,5 @@ export interface UserProfile {
   xp: number;
   level: number;
   title: string;
+  role?: "USER" | "ADMIN";
 }
